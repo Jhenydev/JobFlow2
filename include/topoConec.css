@@ -1,0 +1,35 @@
+.navbar {
+    background-color: #C94C51;
+    padding: 10px;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between; /* Espaça logo e lista */
+    align-items: center;
+}
+
+.logo img {
+    height: 30px; 
+}
+
+/* Centralização dos links */
+ul.nav-links {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 30px;
+    margin: 0;
+}
+
+ul.nav-links li {
+    margin: 0 30px; /* Espaçamento entre os itens */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    transition: color 0.3s;
+    font-size: 18px;
+}

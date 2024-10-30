@@ -1,11 +1,9 @@
 <?php
-
-include "conexao.php";
-include "navbar.php";
+include "../include/topo.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cpf = $_POST["cpf"];
-    
+
     try {
         // Verificar se o funcionário já existe (com base no CPF)
         $sql_verifica = "SELECT * FROM cadastro_fun WHERE cpf = :cpf";
@@ -21,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $sql = "INSERT INTO cadastro_fun (id_funcionario, nome, cpf, cargo, cep, valor_hora)
                     VALUES (NULL, :nome, :cpf, :cargo, :cep, :valor_hora)";
         }
-        
+
         $comando = $banco->prepare($sql);
 
         // Bind dos parâmetros
@@ -36,7 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             echo "Erro ao salvar os dados.";
         }
-
     } catch (PDOException $e) {
         echo "Erro: " . $e->getMessage();
     }
@@ -62,114 +59,14 @@ if (isset($_POST["remover"])) {
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar ou Remover Funcionário</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-        }
-
-        .header {
-            background-color: #F69D3B;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .container {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin: 50px auto;
-            width: 70%;
-        }
-
-        .container img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-        }
-
-        .form-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 50%;
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: black;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        input[type="text"], input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .cep-valor-hora {
-            display: flex;
-            gap: 15px;
-        }
-
-        .cep-valor-hora input {
-            width: calc(50% - 20px);
-        }
-
-        button {
-            background-color: #F69D3B;
-            color: white;
-            padding: 15px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .remover-button {
-            background-color: #e74c3c;
-            margin-top: 10px;
-        }
-
-        .back-button {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .back-button button {
-            background-color: #F69D3B;
-            color: white;
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-        }
-
-    </style>
+    <link rel="stylesheet" href="geren2.css">
 </head>
+
 <body>
     <div class="header">
         EDITAR OU REMOVER FUNCIONÁRIO
@@ -205,7 +102,8 @@ if (isset($_POST["remover"])) {
     </div>
 
     <?php
-    include "topo.php";
-?>
+    include "../include/topo.php";
+    ?>
 </body>
+
 </html>

@@ -1,5 +1,5 @@
 <?php
-    include "topo.php";
+    include "../include/topo.php";
 ?>
 
 <!DOCTYPE html>
@@ -33,6 +33,6 @@
             
 
             <?php
-include "rodape.php";
+include "../include/rodape.php";
 ?>
 

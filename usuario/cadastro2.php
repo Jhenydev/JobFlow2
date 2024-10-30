@@ -1,13 +1,13 @@
 <?php
-include "topo.php";
-include "conexao.php";
+include "../include/topo.php";
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         $sql = "INSERT INTO usuarios
             (id_usuario, nome, email, telefone, data_nascimento, sexo, cpf, endereco, bairro, cidade, estado, cep, senha)
             VALUES (NULL, :nome, :email, :telefone, :data_nascimento, :sexo, :cpf, :endereco, :bairro, :cidade, :estado, :cep, :senha)";
-        
+
         $comando = $banco->prepare($sql);
 
         // Bind dos parâmetros
@@ -23,9 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $comando->bindParam(':estado', $_POST["estado"]);
         $comando->bindParam(':cep', $_POST["cep"]);
         $comando->bindParam(':senha', $_POST["senha"]);
-       
-       
-        
+
+
+
         if ($comando->execute()) {
             echo "Cadastro efetuado com sucesso!";
         } else {
@@ -40,95 +40,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Cadastro</title>
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f8f9fa;
-            margin: 0;
-            padding: 0;
-        }
-
-        h3 {
-            text-align: center;
-            font-size: 24px;
-            color: #495057;
-            margin-top: 30px;
-        }
-
-        form {
-            background-color: #fff;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 700px;
-            margin: 40px auto;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 600;
-            color: #495057;
-        }
-
-        input[type="text"],
-        input[type="date"],
-        input[type="email"],
-        input[type="password"],
-        select {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #ced4da;
-            border-radius: 5px;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
-
-        input[type="submit"] {
-            background-color: #333;
-            color: white;
-            font-size: 16px;
-            font-weight: 600;
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #F69D3B;
-        }
-
-        .form-group {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .form-field {
-            flex: 1;
-        }
-
-        .password-container {
-            position: relative;
-        }
-
-        .toggle-password {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="cadastro2.css">
 </head>
 
 <body>
@@ -188,14 +106,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="email" name="email" id="email" placeholder="Digite seu email" required>
 
         <div class="password-container">
-    <label for="senha">Senha</label>
-    <input type="password" name="senha" id="senha" placeholder="Digite sua senha" required>
-</div>
+            <label for="senha">Senha</label>
+            <input type="password" name="senha" id="senha" placeholder="Digite sua senha" required>
+        </div>
 
-<div class="password-container">
-    <label for="confirme_senha">Confirme a Senha</label>
-    <input type="password" name="confirme_senha" id="confirme_senha" placeholder="Confirme sua senha" required>
-</div>
+        <div class="password-container">
+            <label for="confirme_senha">Confirme a Senha</label>
+            <input type="password" name="confirme_senha" id="confirme_senha" placeholder="Confirme sua senha" required>
+        </div>
 
         <input type="submit" value="Continuar">
     </form>
@@ -203,4 +121,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 </body>
+
 </html

@@ -1,23 +1,23 @@
-<?php 
-include "topored.php";
-include "conexao.php";
+<?php
+include "../include/topo.php";
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         $sql = "INSERT INTO ponto
             (id_ponto, id_usuario, hora_entrada, hora_saida, data)
             VALUES (NULL, :id_usuario, : hora_entrada, : hora_saida, :data)";
-        
+
         $comando = $banco->prepare($sql);
-        
+
 
         $comando->bindParam(':id_usuario', $_POST["id_usuario"]);
         $comando->bindParam(':hora_entrada', $_POST[" hora_entrada"]);
         $comando->bindParam(':hora_saida', $_POST["hora_saida"]);
         $comando->bindParam(':data', $_POST["data"]);
-        
-    
-        
+
+
+
         if ($comando->execute()) {
             echo "Ponto efetuado com sucesso!";
         } else {
@@ -47,62 +47,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marcar Ponto</title>
-    
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 20px;
-            text-align: center;
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        .time-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        .buttons-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .button-item {
-            margin: 15px 0;
-            width: 100%;
-            max-width: 300px;
-        }
-
-        .buttons-container button {
-            padding: 25px;
-            align-items: center;
-            font-size: 16px;
-            background-color: #C94C51;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .history-container {
-            margin-top: 30px;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="marcaponto.css">
 
     <script>
         function marcarPonto() {
@@ -126,27 +76,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     </script>
 </head>
+
 <body>
 
-<h1>Marcar Ponto</h1>
+    <h1>Marcar Ponto</h1>
 
-<div class="buttons-container">
-    <form id="pontoForm" method="POST">
-        <div class="button-item">
-            <button type="button" onclick="marcarPonto()">Entrada</button>
-            <button type="button" onclick="marcarPonto()">Saida</button>
-        </div>
-    </form>
-</div>
+    <div class="buttons-container">
+        <form id="pontoForm" method="POST">
+            <div class="button-item">
+                <button type="button" onclick="marcarPonto()">Entrada</button>
+                <button type="button" onclick="marcarPonto()">Saida</button>
+            </div>
+        </form>
+    </div>
 
-<div class="history-container">
-    <h2>Histórico</h2>
-    <p id="historico"></p>
-</div>
+    <div class="history-container">
+        <h2>Histórico</h2>
+        <p id="historico"></p>
+    </div>
 
 
-<?php
-    include "rodape.php";
-?>
+    <?php
+    include "../include/rodape.php";
+    ?>
 </body>
+
 </html>

@@ -1,6 +1,6 @@
 <?php
-include "conexao.php";
-include "topored.php"; // Incluindo o topo aqui
+
+include "../include/topo.php"; // Incluindo o topo aqui
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
