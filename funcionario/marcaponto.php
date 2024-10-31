@@ -1,5 +1,4 @@
 <?php
-include "../include/topo.php";
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -77,9 +76,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </script>
 </head>
 
-<body>
-
-    <h1>Marcar Ponto</h1>
+<div class="header">
+        <img src="profile.jpg" alt="Foto de Perfil" class="profile-pic">
+        <div class="user-info">
+            <div class="user-name">Mary Lorem</div>
+            <div class="user-position">839478 - Analista de Marketing</div>
+            <div class="tags">
+                <div class="tag">Filial: LDC Transporte Centro-oeste</div>
+                <div class="tag">Depto: Depósito Centro de Distribuição</div>
+            </div>
+        </div>
+        <div class="email-icon">✉️</div>
+    </div>
+    
 
     <div class="buttons-container">
         <form id="pontoForm" method="POST">
