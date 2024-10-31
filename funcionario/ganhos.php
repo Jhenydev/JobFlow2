@@ -1,6 +1,7 @@
 <?php
-
-include "../include/topo.php"; // Incluindo o topo aqui
+$css = "ganhos.css";
+$navbar = "navbarfuncionario.php";
+include "../include/topo.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
@@ -30,68 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Salário</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #F5F5F5;
-        }
-        .header {
-            /* Adicione aqui os estilos para o seu topo, se necessário */
-            background-color: #d9534f; /* Exemplo de cor */
-            color: white;
-            padding: 5px;
-            text-align: center; /* Centralizando o texto no topo */
-        }
-        .content {
-            padding: 30px;
-            text-align: center;
-            background-color: white;
-            width: 60%;
-            height: 300px;
-            margin: 20px auto; /* Centraliza horizontalmente e adiciona espaço acima/abaixo */
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative; /* Permite que a posição interna seja controlada */
-            top: 0; /* Ajusta a posição vertical do conteúdo */
-        }
-        .box {
-            display: inline-block;
-            width: 15%;
-            margin-right: 4%;
-            border: 2px solid #555;
-            padding: 10px;
-            border-radius: 4px;
-        }
-        .box .label {
-            font-size: 16px;
-            color: white;
-            border-radius: 3px;
-            background-color: #d9534f;
-        }
-        .box .value {
-            font-size: 20px;
-            font-weight: bold;
-            
-        }
-        .box.right {
-            text-align: center;
-            border: 2px solid #555;
-            width: 500px;
-            height: 200px;
-            border-radius: 4px;
-            line-height: 90px;
-        }
-        .box.right .value {
-
-            font-size: 40px;
-            font-weight: bold;
-        }
-    </style>
+    
 </head>
 <body>
     <div class="header">

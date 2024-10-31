@@ -1,4 +1,6 @@
 <?php
+$css = "cadastrarfun.css";
+$navbar = "navbarempresa.php";
 include "../include/topo.php";
 
 
@@ -36,21 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Funcionário</title>
-    <link rel="stylesheet" href="cadastrarfun.css">
-</head>
-
 <body>
-    <div class="header">
-        CADASTRAR FUNCIONÁRIOS
-    </div>
-
     <div class="container">
         <div>
             <img src="user_image_placeholder.png" alt="Ícone de Funcionário">

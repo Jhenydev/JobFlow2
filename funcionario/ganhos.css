@@ -1,94 +1,58 @@
 body {
-  font-family: "Arial", sans-serif;
-  background-color: #f4f4f4;
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  background-color: #f5f5f5;
 }
-
-.container {
-  max-width: 500px;
-  margin: 0 auto;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  background-color: #3c6983;
+  /* Adicione aqui os estilos para o seu topo, se necessário */
+  background-color: #d9534f; /* Exemplo de cor */
   color: white;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  padding: 5px;
+  text-align: center; /* Centralizando o texto no topo */
 }
-
-.back-btn {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-.user-icon {
-  font-size: 30px;
-}
-
 .content {
-  padding: 20px;
-}
-
-.saldo {
-  text-align: left;
-  margin-bottom: 20px;
-}
-
-.saldo h2 {
-  font-size: 18px;
-  color: #333;
-}
-
-.valor {
-  font-size: 24px;
-  color: #000;
-  margin-top: 5px;
-}
-
-.historico {
-  margin-top: 20px;
-}
-
-.historico h3 {
-  color: #3c6983;
-  font-size: 16px;
-  margin-bottom: 10px;
-}
-
-.transacao {
+  padding: 30px;
+  text-align: center;
+  background-color: white;
+  width: 60%;
+  height: 300px;
+  margin: 20px auto; /* Centraliza horizontalmente e adiciona espaço acima/abaixo */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   display: flex;
+  justify-content: center;
   align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid #e0e0e0;
+  position: relative; /* Permite que a posição interna seja controlada */
+  top: 0; /* Ajusta a posição vertical do conteúdo */
 }
-
-.icon {
-  font-size: 24px;
-  margin-right: 10px;
+.box {
+  display: inline-block;
+  width: 15%;
+  margin-right: 4%;
+  border: 2px solid #555;
+  padding: 10px;
+  border-radius: 4px;
 }
-
-.titulo {
+.box .label {
+  font-size: 16px;
+  color: white;
+  border-radius: 3px;
+  background-color: #d9534f;
+}
+.box .value {
+  font-size: 20px;
   font-weight: bold;
-  color: #333;
 }
-
-.descricao, .valor-transacao {
-  font-size: 14px;
-  color: #666;
+.box.right {
+  text-align: center;
+  border: 2px solid #555;
+  width: 500px;
+  height: 200px;
+  border-radius: 4px;
+  line-height: 90px;
 }
-
-.valor-transacao {
+.box.right .value {
+  font-size: 40px;
   font-weight: bold;
-  margin-top: 2px;
 }
