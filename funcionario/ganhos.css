@@ -83,8 +83,7 @@ body {
   color: #333;
 }
 
-.descricao,
-.valor-transacao {
+.descricao, .valor-transacao {
   font-size: 14px;
   color: #666;
 }
