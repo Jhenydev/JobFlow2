@@ -10,9 +10,11 @@ if(isset($_POST["usuarios"])) {
     $consulta->execute(array($_POST["usuarios"], $_POST["usuarios"],$_POST["senha"]));
     if($registro = $consulta->fetch()) {
         $_SESSION["usuario"] = $registro;
+        $_SESSION["logado"] = 1;
         header("Location: principal.php");
     } else {
         $mensagem = "Usuário ou senha inválidos!";
+        $_SESSION["logado"] = 0;
     }
 }
 ?>

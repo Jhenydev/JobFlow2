@@ -1,4 +1,5 @@
 <?php
+$area_restrita = 1;
 $css = "indexfuncionario.css";
 $navbar = "navbarfuncionario.php";
 include "../include/topo.php";
