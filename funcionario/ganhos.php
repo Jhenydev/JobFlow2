@@ -1,7 +1,8 @@
 <?php
-$css = "ganhos.css";
-$navbar = "navbarfuncionario.php";
-include "../include/topo.php";
+include '../include/headerfuncionario.php';
+?>
+
+<?php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
@@ -31,12 +32,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Salário</title>
+    <link rel="stylesheet" href="ganhos.css">
     
 </head>
 <body>
-    <div class="header">
-       
-    </div>
+
     <div class="content">
         <div class="box">
             <div class="label">Salário hora:</div>
