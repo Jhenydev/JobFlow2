@@ -1,7 +1,6 @@
 <?php
 $area_restrita = 1;
 include '../include/headerfuncionario.php';
-
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +18,7 @@ include '../include/headerfuncionario.php';
 
         <a href="marcaponto.php">
                 <button>MARCAR PONTO</button> </a>
-                
+
             <a href="frequencia.PHP">
                 <button>FREQUÊNCIA</button> </a>
 

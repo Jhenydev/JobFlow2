@@ -6,7 +6,7 @@ body {
 }
 
 .header {
-  background-color: #f69d3b;
+  background-color: #c94c51;
   color: white;
   padding: 20px 0;
   text-align: center;
@@ -67,7 +67,7 @@ input[type="number"] {
 }
 
 button {
-  background-color: #f69d3b;
+  background-color: #c94c51;
   color: white;
   padding: 15px;
   font-size: 16px;
@@ -75,9 +75,13 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
+.salvar{
+  background-color: #a0a0a0;
+
+}
 
 .remover-button {
-  background-color: #e74c3c;
+  background-color: #c94c51;
   margin-top: 10px;
 }
 
@@ -88,7 +92,7 @@ button {
 }
 
 .back-button button {
-  background-color: #f69d3b;
+  background-color: #c94c51;
   color: white;
   padding: 10px 20px;
   font-size: 16px;

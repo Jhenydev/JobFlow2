@@ -8,7 +8,7 @@ include "../include/topo.php";
 
     <div class="container">
         <?php
-        $sql = "SELECT * FROM cadastro_fun where empresa =?";
+        $sql = "SELECT * FROM cadastro_fun where empresa = ?";
         $comando = $banco->prepare($sql);
         $comando->execute(array($_SESSION["usuario"]["id_usuario"]));
 
@@ -23,13 +23,14 @@ include "../include/topo.php";
                 <p class='cpf'>$campo_cpf</p>
                 <p class='cep'>$campo_cep</p>
                 <br>
-                <a href='geren2.php' class='button'>GERENCIAR</a>
+                <a href='geren2.php?id=$campo_id_funcionario' class='button'>GERENCIAR</a>
             </div>
         </div>
         ";
         }
         ?>
     </div>
+
 
 </body>
 
