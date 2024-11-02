@@ -1,3 +1,8 @@
+<?php
+include '../include/headerfuncionario.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

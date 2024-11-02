@@ -2,10 +2,49 @@ body {
   font-family: Arial, sans-serif;
   background-color: #f1f2f6;
   margin: 0;
-  padding: 10px;
   text-align: center;
 }
 
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  background-color: rgb(255, 255, 255);
+  padding: 20px; 
+  width: 90%;
+  max-width: 500px;
+  border-radius: 10px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.button-item h2 {
+  color: #c94c51;
+}
+.button-item h3 {
+  color: #000000;
+}
+
+.button-item {
+  margin: 15px 0;
+  width: 100%;
+  
+}
+
+.buttons-container button {
+  padding: 15px;
+  font-size: 16px;
+  background-color: #c94c51;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 150px;
+  margin-bottom: 10px; 
+}
+
+.buttons-container h3 {
+  margin: 0 0 10px; 
+}
 
 .content {
   padding: 30px;
@@ -19,8 +58,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative; /* Permite que a posição interna seja controlada */
-  top: 0; /* Ajusta a posição vertical do conteúdo */
+  position: relative; 
+  top: 0; 
 }
 .box {
   display: inline-block;
@@ -52,3 +91,5 @@ body {
   font-size: 40px;
   font-weight: bold;
 }
+
+

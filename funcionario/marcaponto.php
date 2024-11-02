@@ -41,6 +41,9 @@ include '../include/headerfuncionario.php';
                     <hr style="width: 100%; margin: 20px auto;">
                     <button type="button" onclick="marcarPonto()">Entrada</button>
                     <button type="button" onclick="marcarPonto()">Saída</button>
+                    <div class="justificar">
+                    <button type="button" onclick="marcarPonto()">Justificar Ponto</button>
+                    </div>
                 </div>
             </form>
         </div>

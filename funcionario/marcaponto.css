@@ -2,7 +2,6 @@ body {
   font-family: Arial, sans-serif;
   background-color: #f1f2f6;
   margin: 0;
-  padding: 10px;
   text-align: center;
 }
 
@@ -17,6 +16,7 @@ h1 {
   display: flex;
   align-items: center;
   flex-wrap: wrap; /* Permite que os itens se ajustem em telas menores */
+  
 }
 
 .profile-pic {
@@ -47,6 +47,7 @@ h1 {
   background-color: rgb(255, 255, 255);
   padding: 20px; 
   width: 90%;
+  height: 300px;
   max-width: 500px;
   border-radius: 10px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
@@ -58,6 +59,19 @@ h1 {
   width: 100%;
 }
 
+.button-item  {
+  margin: 15px 0;
+  width: 100%;
+  
+}
+.button-item h3 {
+  color: #c94c51;
+}
+
+.buttons-container justificar {
+margin-top:100px;
+}
+
 .buttons-container button {
   padding: 15px;
   font-size: 16px;
@@ -67,7 +81,8 @@ h1 {
   border-radius: 5px;
   cursor: pointer;
   width: 150px;
-  margin-bottom: 10px; /* Espaçamento entre os botões */
+  margin-top: 50px;
+  
 }
 
 .buttons-container h3 {

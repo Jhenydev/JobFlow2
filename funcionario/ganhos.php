@@ -37,15 +37,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 
-    <div class="content">
-        <div class="box">
-            <div class="label">Salário hora:</div>
-            <div class="value" id="salario_hora">R$</div>
+<div class="boxes" style="display: flex; gap: 20px; justify-content: center; margin-top: 20px;">
+        <div class="buttons-container">
+            <form id="pontoForm" method="POST">
+                <div class="button-item">
+                <h2>Ganhos Previstos</h2>
+                    <hr style="width: 100%; margin: 20px auto;">
+                    <h3> R$ 29,90
+                </div>
+            </form>
         </div>
-        <div class="box right">
-            <div class="label">Ganho previsto no mês:</div>
-            <div class="value" id="ganhos">R$ </div>
+
+        <div class="buttons-container">
+            <form id="pontoForm2" method="POST">
+                <div class="button-item">
+                    <h3>Horas Trabalhadas</h3>
+                    <hr style="width: 100%; margin: 20px auto;">
+                </div>
+            </form>
         </div>
     </div>
+
+
+
 </body>
 </html>
