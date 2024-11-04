@@ -28,6 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($comando->execute()) {
             echo "Cadastro efetuado com sucesso!";
+            header("location: ../empresa/gerenciarfun.php");
+            exit;
         } else {
             echo "Erro ao cadastrar usuário.";
         }
