@@ -5,9 +5,21 @@ include "../include/topo.php";
 
 $mensagem = "";
 if(isset($_POST["usuarios"])) {
-    $sql = "SELECT * FROM usuarios WHERE nome = ? OR email = ? AND senha = ?";
+    $sql = "SELECT * FROM usuarios WHERE nome = ? AND senha = ?";
     $consulta = $banco->prepare($sql);
-    $consulta->execute(array($_POST["usuarios"], $_POST["usuarios"],$_POST["senha"]));
+    $consulta->execute(array($_POST["usuarios"],$_POST["senha"]));
+    if($registro = $consulta->fetch()) {
+        $_SESSION["usuario"] = $registro;
+        $_SESSION["logado"] = 1;
+        header("Location: principal.php");
+    } else {
+        $mensagem = "Usuário ou senha inválidos!";
+        $_SESSION["logado"] = 0;
+    }
+}if(isset($_POST["usuarios"])) {
+    $sql = "SELECT * FROM usuarios WHERE email = ? AND senha = ?";
+    $consulta = $banco->prepare($sql);
+    $consulta->execute(array($_POST["usuarios"],$_POST["senha"]));
     if($registro = $consulta->fetch()) {
         $_SESSION["usuario"] = $registro;
         $_SESSION["logado"] = 1;
