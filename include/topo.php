@@ -8,9 +8,7 @@ if (isset($_GET["logout"])) {
     session_destroy();
 }
 if (!isset($_SESSION["usuario"])) {
-    // header("location: ../usuario/index.php");
-    // exit();
-    echo ("Voce esta desconectado.");
+
 }
 
 if (isset($area_restrita)) {

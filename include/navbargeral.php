@@ -6,13 +6,13 @@
                 $logo = "white.png";
             ?>
                 <li><a href="index.php?logout"><i class="fa fa-sign-out-alt"></i> Sair</a></li>
+                <li><a href="principal.php"></i>Serviços</a></li>
             <?php
             } else {
                 $logo = "logojob.png";
             ?>
-                <li><a href="login.php"><i class="fa fa-user"></i>Entrar</a></li>
+            <li><a href="login.php"><i class="fa fa-user"></i>Entrar</a></li>
             <?php
-
             }
             ?>
             <li><a href="../usuario/index.php">Home</a></li>
