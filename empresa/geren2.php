@@ -97,9 +97,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         ?>
         
+        
         <div class="form-container">
+
             <h2>Editar Funcionário</h2>
+            
             <form action="" method="POST">
+                <a href="frequenciafun.php?id=<?php echo $id_funcionario; ?>" class="frequencia-button">Gerenciar Frequência</a>
                 <input type="text" id="nome" name="nome" value="<?php echo $campo_nome; ?>" required>
                 <input type="text" id="cpf" name="cpf" value="<?php echo $campo_cpf; ?>" readonly>
                 <input type="text" id="cargo" name="cargo" value="<?php echo $campo_cargo; ?>" required>
@@ -112,6 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <button type="submit" name="remover" class="remover-button">Remover Funcionário</button>
             </form>
         </div>
+        
     </div>
 
     <?php

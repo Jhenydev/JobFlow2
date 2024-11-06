@@ -2,6 +2,9 @@
 session_start();
 include_once '../include/conexao.php'; 
 
+include '../include/headerfuncionario.php';
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         
@@ -75,9 +78,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <button type="submit" name="tipo" value="entrada">Entrada</button>
                     <button type="submit" name="tipo" value="saida">Saída</button>
                     
-                    <div class="justificar">
-                        <button type="button" onclick="alert('Justificativa de Ponto')">Justificar Ponto</button>
-                    </div>
                 </div>
             </form>
         </div>
@@ -89,7 +89,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <p id="historico">Carregando histórico...</p>
             </div>
         </div>
+
+        <div class="buttons-container">
+            <div class="button-item">
+                <h3>Esqueceu de Marcar?</h3>
+                <hr style="width: 100%; margin: 20px auto;">
+                <button type="submit" name="tipo" value="JUSTIFICAR">Justificar</button>
+            </div>  
+        </div>
+
     </div>
+    <a href="indexfuncionario.php" class="botao">Voltar</a>
+
 
     <?php include "../include/rodape.php"; ?>
 </body>
