@@ -7,37 +7,46 @@ include "../include/topo.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
-        //fazer select para consultar o cpf na tabela usuarios
-        //se não existir registro inserir usuario
-        $sql = "INSERT INTO cadastro_fun
-            (id_funcionario, nome, cpf, cargo, cep, valor_hora, data_inicio, empresa)
-            VALUES (NULL, :nome, :cpf, :cargo,:cep, :valor_hora, CURDATE(), :empresa)";
+        // Verifica se o CPF existe na tabela de usuários
+        $sqlVerificaCPF = "SELECT id_usuario FROM usuarios WHERE cpf = :cpf";
+        $comandoVerifica = $banco->prepare($sqlVerificaCPF);
+        $comandoVerifica->bindParam(':cpf', $_POST["cpf"]);
+        $comandoVerifica->execute();
 
-        $comando = $banco->prepare($sql);
+        // Se o CPF existir, prossegue com o cadastro
+        if ($comandoVerifica->rowCount() > 0) {
+            $id_usuario = $comandoVerifica->fetchColumn();
 
-        // Bind dos parâmetros
-        $comando->bindParam(':nome', $_POST["nome"]);
-        $comando->bindParam(':cpf', $_POST["cpf"]);
-        $comando->bindParam(':cargo', $_POST["cargo"]);
-        $comando->bindParam(':cep', $_POST["cep"]);
-        $comando->bindParam(':valor_hora', $_POST["valor_hora"]);
-        $comando->bindParam(':empresa', $_SESSION["usuario"]["id_usuario"]);
+            // Preparar o comando para inserir o funcionário
+            $sql = "INSERT INTO cadastro_fun
+                (id_funcionario, nome, cpf, cargo, cep, valor_hora, data_inicio, empresa)
+                VALUES (NULL, :nome, :cpf, :cargo, :cep, :valor_hora, CURDATE(), :empresa)";
 
+            $comando = $banco->prepare($sql);
 
+            // Bind dos parâmetros
+            $comando->bindParam(':nome', $_POST["nome"]);
+            $comando->bindParam(':cpf', $_POST["cpf"]);
+            $comando->bindParam(':cargo', $_POST["cargo"]);
+            $comando->bindParam(':cep', $_POST["cep"]);
+            $comando->bindParam(':valor_hora', $_POST["valor_hora"]);
+            $comando->bindParam(':empresa', $_SESSION["usuario"]["id_usuario"]);
 
-
-        if ($comando->execute()) {
-            echo "Cadastro efetuado com sucesso!";
-            header("location: ../empresa/gerenciarfun.php");
-            exit;
+            if ($comando->execute()) {
+                echo "Cadastro efetuado com sucesso!";
+                header("location: ../empresa/gerenciarfun.php");
+                exit;
+            } else {
+                echo "Erro ao cadastrar usuário.";
+            }
         } else {
-            echo "Erro ao cadastrar usuário.";
+            echo "Usuário não encontrado. Por favor, verifique o CPF.";
         }
     } catch (PDOException $e) {
         echo "Erro: " . $e->getMessage();
     }
 }
-
+    
 ?>
 
 <body>
