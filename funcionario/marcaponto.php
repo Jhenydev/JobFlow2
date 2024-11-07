@@ -17,7 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $sql = "INSERT INTO marca_ponto
                 (id_usuario, empresa, data, hora_entrada)
                 VALUES (:id_usuario, :empresa, :data, :hora)";
-                $comando->bindParam(':data', $data_atual);
             } else {
                 $sql = "UPDATE marca_ponto set hora_saida = :hora
                 where id_usuario = :id_usuario and empresa = :empresa";
@@ -32,7 +31,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $comando->bindParam(':empresa', $empresa);
             $comando->bindParam(':hora', $hora_atual);
-
+            if ($hora_tipo == 'entrada'){
+                $comando->bindParam(':data', $data_atual);
+            }
 
 
             if ($comando->execute()) {

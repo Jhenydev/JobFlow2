@@ -28,11 +28,12 @@ include_once '../include/conexao.php';
     <?php
     
     $sql = "SELECT  empresa, usuarios.nome 
-FROM cadastro_fun INNER JOIN usuarios ON (empresa = id_usuario) 
-WHERE cadastro_fun.cpf = ?";
+                FROM cadastro_fun INNER JOIN usuarios ON (empresa = id_usuario) 
+                WHERE cadastro_fun.cpf = ?";
     $comando = $banco->prepare($sql);
     $comando->execute(array($_SESSION["usuario"]["cpf"]));
-    
+    error_log($sql);
+
     while ($registro = $comando->fetch()) {
         extract($registro, EXTR_PREFIX_ALL, "campo");
     
@@ -40,7 +41,7 @@ WHERE cadastro_fun.cpf = ?";
     }
 
     ?><br><br>
-    
+
         <h3>Visualização de Dados</h3>
         <div id="data-content">Selecione uma data para ver os dados.</div>
     </div>

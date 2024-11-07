@@ -1,6 +1,6 @@
 <?php
 include "../include/topo.php";
-
+include "../include/conexao.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <form method="POST" action="caralho.php" onsubmit="return validarSenhas()">
+    <form method="POST" onsubmit="return validarSenhas()">
         <h3>Cadastre-se</h3>
 
         <label for="nome">Nome</label>
