@@ -21,12 +21,13 @@ if (session_id() == '' || !isset($_SESSION) || session_status() === PHP_SESSION_
     <div class="header">
         <img src="profile.jpg" alt="Foto de Perfil" class="profile-pic">
         <div class="user-info">
-        <?php echo $_SESSION["usuario"]["nome"]; ?></b> </p>
-            <div class="user-position">839478 - Analista de Marketing</div>
+            <h3>
+        <?php echo $_SESSION["usuario"]["nome"]; ?></b> </p></h3>   
+        <?php echo $_SESSION["usuario"]["cpf"]; ?></b> </p>
         </div>
         <img src="../usuario/logowhite.png" alt="Logo" width="130" height="30" style="margin-right: 20px;">
     </div>
-   
+    
 </body>
 
 </html>

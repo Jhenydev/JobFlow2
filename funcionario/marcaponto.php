@@ -7,29 +7,33 @@ include '../include/headerfuncionario.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
-        
+        $empresa = $_POST["empresa"];
         $hora_tipo = isset($_POST["tipo"]) ? $_POST["tipo"] : null;
         $hora_atual = date('H:i:s');
         $data_atual = date('Y-m-d');
 
         if ($hora_tipo) {
-            $sql = "INSERT INTO marca_ponto
-                (id_ponto, id_usuario, hora_entrada, hora_saida, data)
-                VALUES (NULL, :id_usuario, :hora_entrada, :hora_saida, :data)";
+            if ($hora_tipo == 'entrada'){
+                $sql = "INSERT INTO marca_ponto
+                (id_usuario, empresa, data, hora_entrada)
+                VALUES (:id_usuario, :empresa, :data, :hora)";
+                $comando->bindParam(':data', $data_atual);
+            } else {
+                $sql = "UPDATE marca_ponto set hora_saida = :hora
+                where id_usuario = :id_usuario and empresa = :empresa";
+
+            }
+            
 
             $comando = $banco->prepare($sql);
 
        
             $comando->bindParam(':id_usuario', $_SESSION["usuario"]["id_usuario"]);
-            $comando->bindParam(':data', $data_atual);
 
-            if ($hora_tipo === 'entrada') {
-                $comando->bindParam(':hora_entrada', $hora_atual);
-                $comando->bindValue(':hora_saida', null, PDO::PARAM_NULL);
-            } else {
-                $comando->bindValue(':hora_entrada', null, PDO::PARAM_NULL);
-                $comando->bindParam(':hora_saida', $hora_atual);
-            }
+            $comando->bindParam(':empresa', $empresa);
+            $comando->bindParam(':hora', $hora_atual);
+
+
 
             if ($comando->execute()) {
                 echo "Ponto de $hora_tipo registrado com sucesso!";
@@ -73,8 +77,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="button-item">
                     <h3>Marcar Ponto</h3>
                     <hr style="width: 100%; margin: 20px auto;">
+
+                    <?php
+    
+    $sql = "SELECT  empresa, usuarios.nome 
+FROM cadastro_fun INNER JOIN usuarios ON (empresa = id_usuario) 
+WHERE cadastro_fun.cpf = ?";
+    $comando = $banco->prepare($sql);
+    $comando->execute(array($_SESSION["usuario"]["cpf"]));
+    
+    while ($registro = $comando->fetch()) {
+        extract($registro, EXTR_PREFIX_ALL, "campo");
+    
+        echo "<input type = 'radio' name = 'empresa' value = '$campo_empresa' required >$campo_nome<br>";
+    }
+
+    ?>
                     
-                    <!-- Botões de entrada e saída com o mesmo nome e valores diferentes -->
                     <button type="submit" name="tipo" value="entrada">Entrada</button>
                     <button type="submit" name="tipo" value="saida">Saída</button>
                     

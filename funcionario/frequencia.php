@@ -1,5 +1,6 @@
 <?php
 include '../include/headerfuncionario.php';
+include_once '../include/conexao.php'; 
 ?>
 
 
@@ -24,6 +25,22 @@ include '../include/headerfuncionario.php';
     </div>
 
     <div class="data-preview">
+    <?php
+    
+    $sql = "SELECT  empresa, usuarios.nome 
+FROM cadastro_fun INNER JOIN usuarios ON (empresa = id_usuario) 
+WHERE cadastro_fun.cpf = ?";
+    $comando = $banco->prepare($sql);
+    $comando->execute(array($_SESSION["usuario"]["cpf"]));
+    
+    while ($registro = $comando->fetch()) {
+        extract($registro, EXTR_PREFIX_ALL, "campo");
+    
+        echo "<input type = 'radio' name = 'empresa' value = '$campo_empresa' required >$campo_nome<br>";
+    }
+
+    ?><br><br>
+    
         <h3>Visualização de Dados</h3>
         <div id="data-content">Selecione uma data para ver os dados.</div>
     </div>
