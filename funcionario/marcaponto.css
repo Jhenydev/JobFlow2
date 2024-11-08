@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f1f2f6;
+  background-color: #f9f9f9;
   margin: 0;
   text-align: center;
 }
@@ -11,7 +11,7 @@ h1 {
 
 .header {
   background-color: #c94c51;
-  color: white;
+  color: white; 
   padding: 15px;
   display: flex;
   align-items: center;
@@ -47,12 +47,13 @@ h1 {
   margin-bottom: 30px;
   background-color: rgb(255, 255, 255);
   padding: 20px; 
-  width: 90%;
-  height: 250px;
+  width: 80%;
+  height:   50%;
   max-width: 400px;
   border-radius: 10px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
 }
+
 
 
 .button-item {
@@ -95,6 +96,44 @@ hr {
   margin: 20px auto;
 }
 
+
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+/* Estilização dos inputs de horário e data */
+input[type="time"],
+input[type="date"],
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* Estilização do textarea */
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Adiciona espaçamento ao redor dos grupos de label e input */
+div.button-item label,
+div.button-item input[type="time"],
+div.button-item input[type="date"],
+div.button-item textarea {
+  margin-top: 10px;
+}
+
+
+
 @media (max-width: 600px) {
 
   .boxes {
@@ -106,4 +145,9 @@ hr {
   .header img {
       display: none;
   }
+}
+
+
+.espaco {
+  padding: 80px;
 }

@@ -17,21 +17,29 @@
   margin-right: 20px;
 }
 
-.data-preview .remover-button {
-  background-color: #c94c51;
-  color: white;
-  padding: 15px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 90%;
-}
 .calendar-controls {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
 }
+
+.calendar-controls button {
+  background-color:  #c94c51; 
+  color: white; 
+  border: none; 
+  padding: 10px 20px; 
+  font-size: 16px; 
+  font-weight: bold; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease; 
+  margin: 0 5px; 
+}
+
+.calendar-controls button:active {
+  background-color: #aa3d40; ; 
+}
+
 
 .calendar table {
   width: 100%;
@@ -84,13 +92,6 @@
 .data-preview p {
   font-size: 16px;
   margin: 10px 0;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f1f2f6;
-  margin: 0;
-  text-align: center;
 }
 
 /* Responsividade */

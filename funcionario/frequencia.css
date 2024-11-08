@@ -23,6 +23,25 @@
   margin-bottom: 10px;
 }
 
+.calendar-controls button {
+  background-color:  #c94c51; 
+  color: white; 
+  border: none; 
+  padding: 10px 20px; 
+  font-size: 16px; 
+  font-weight: bold; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  height: 40px;
+  transition: background-color 0.3s ease; 
+  margin: 0 5px; 
+}
+
+.calendar-controls button:active {
+  background-color: #aa3d40; ; 
+}
+
+
 .calendar table {
   width: 100%;
   border-collapse: collapse;
@@ -67,7 +86,15 @@
 
 .data-preview h3 {
   margin-top: 0;
-  color: #c94c51;
+  color: #1f1f1f;
+  text-align: center;
+}
+.data-preview h2 {
+  margin-top: 0;
+  background-color: #c94c51;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
   text-align: center;
 }
 

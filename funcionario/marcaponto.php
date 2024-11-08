@@ -72,6 +72,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
+    <br><br>
+<a href="indexfuncionario.php" class="botao">Voltar</a> 
     <div class="boxes" style="display: flex; gap: 20px; justify-content: center; margin-top: 20px;">
         <div class="buttons-container">
             <form id="pontoForm" method="POST">
@@ -109,18 +111,49 @@ WHERE cadastro_fun.cpf = ?";
                 <p id="historico">Carregando histórico...</p>
             </div>
         </div>
-
+        
+        
         <div class="buttons-container">
             <div class="button-item">
                 <h3>Esqueceu de Marcar?</h3>
                 <hr style="width: 100%; margin: 20px auto;">
+                
+                <?php
+    
+    $sql = "SELECT  empresa, usuarios.nome 
+FROM cadastro_fun INNER JOIN usuarios ON (empresa = id_usuario) 
+WHERE cadastro_fun.cpf = ?";
+    $comando = $banco->prepare($sql);
+    $comando->execute(array($_SESSION["usuario"]["cpf"]));
+    
+    while ($registro = $comando->fetch()) {
+        extract($registro, EXTR_PREFIX_ALL, "campo");
+    
+        echo "<input type = 'radio' name = 'empresa' value = '$campo_empresa' required >$campo_nome<br>";
+        
+    }
+
+    ?>
+                <label for="horario1">Entrada</label>
+<input type="time" name="horario1" id="horario1" required>
+
+<label for="horario2">Saida</label>
+<input type="time" name="horario2" id="horario2" required>
+
+<label for="data">Data</label>
+<input type="date" name="data" id="data" required>
+
+<label for="justificativa">Justificativa</label>
+<textarea name="justificativa" id="justificativa" placeholder="Escreva sua justificativa aqui" rows="4" required></textarea>
+
                 <button type="submit" name="tipo" value="JUSTIFICAR">Justificar</button>
             </div>  
         </div>
 
     </div>
-    <a href="indexfuncionario.php" class="botao">Voltar</a>
+    <div class="espaco">
 
+    </div>
 
     <?php include "../include/rodape.php"; ?>
 </body>
