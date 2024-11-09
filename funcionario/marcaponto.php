@@ -114,13 +114,12 @@ WHERE cadastro_fun.cpf = ?";
         
         
         <div class="buttons-container">
-            <div class="button-item">
-                <h3>Esqueceu de Marcar?</h3>
-                <hr style="width: 100%; margin: 20px auto;">
-                
-                <?php
-    
-    $sql = "SELECT  empresa, usuarios.nome 
+    <div class="button-item">
+        <h3>Esqueceu de Marcar?</h3>
+        <hr style="width: 100%; margin: 20px auto;">
+
+        <?php 
+        $sql = "SELECT  empresa, usuarios.nome 
 FROM cadastro_fun INNER JOIN usuarios ON (empresa = id_usuario) 
 WHERE cadastro_fun.cpf = ?";
     $comando = $banco->prepare($sql);
@@ -129,31 +128,58 @@ WHERE cadastro_fun.cpf = ?";
     while ($registro = $comando->fetch()) {
         extract($registro, EXTR_PREFIX_ALL, "campo");
     
-        echo "<input type = 'radio' name = 'empresa' value = '$campo_empresa' required >$campo_nome<br>";
-        
+        echo "<input type = 'radio' name = 'empresa' value = '$campo_empresa' required >$campo_empresa<br>"; //nome
     }
 
-    ?>
-                <label for="horario1">Entrada</label>
-<input type="time" name="horario1" id="horario1" required>
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["tipo"]) && $_POST["tipo"] === "JUSTIFICAR") {
+            // Prepare a instrução SQL
+            $sql = "INSERT INTO justificar (id_usuario, empresa, justificativa, data, entrada, saida)
+                    VALUES (:id_usuario, :empresa, :justificativa, :data, :entrada, :saida)";
 
-<label for="horario2">Saida</label>
-<input type="time" name="horario2" id="horario2" required>
+            $comando = $banco->prepare($sql);
 
-<label for="data">Data</label>
-<input type="date" name="data" id="data" required>
+            // Bind dos parâmetros
+            $comando->bindParam(':id_usuario', $_SESSION["usuario"]["id_usuario"]);
+            $comando->bindParam(':empresa', $campo_empresa);
+            $comando->bindParam(':justificativa', $_POST["justificativa"]);
+            $comando->bindParam(':data', $_POST["data"]);
+            $comando->bindParam(':entrada', $_POST["entrada"]);
+            $comando->bindParam(':saida', $_POST["saida"]);
 
-<label for="justificativa">Justificativa</label>
-<textarea name="justificativa" id="justificativa" placeholder="Escreva sua justificativa aqui" rows="4" required></textarea>
+            // Executa a instrução e verifica o resultado
+            if ($comando->execute()) {
+                echo "<p>Mensagem enviada com sucesso!</p>";
+                header("Location: ../funcionario/marcaponto.php");
+                exit;
+            } else {
+                echo "<p>Erro ao enviar a mensagem</p>";
+            }
+        }
+        ?>        
 
-                <button type="submit" name="tipo" value="JUSTIFICAR">Justificar</button>
-            </div>  
-        </div>
+        <form method="POST">
+            <br><br>
+            <label for="entrada">Entrada</label>
+            <input type="time" name="entrada" id="entrada" required>
 
+            <label for="saida">Saída</label>
+            <input type="time" name="saida" id="saida" required>
+
+            <label for="data">Data</label>
+            <input type="date" name="data" id="data" required>
+
+            <label for="justificativa">Justificativa</label>
+            <textarea name="justificativa" id="justificativa" placeholder="Escreva sua justificativa aqui" rows="4" required></textarea>
+
+            <button type="submit" name="tipo" value="JUSTIFICAR">Justificar</button>
+        </form>
+    </div>  
+</div>
     </div>
-    <div class="espaco">
+<div class="espaco">
 
-    </div>
+</div>
+  
 
     <?php include "../include/rodape.php"; ?>
 </body>

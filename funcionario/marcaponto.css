@@ -47,8 +47,8 @@ h1 {
   margin-bottom: 30px;
   background-color: rgb(255, 255, 255);
   padding: 20px; 
-  width: 80%;
-  height:   50%;
+  width: 60%;
+  height:  50%;
   max-width: 400px;
   border-radius: 10px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
@@ -149,5 +149,5 @@ div.button-item textarea {
 
 
 .espaco {
-  padding: 80px;
+ padding: 80px;
 }
