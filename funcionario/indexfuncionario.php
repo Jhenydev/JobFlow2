@@ -25,7 +25,7 @@ WHERE cadastro_fun.cpf = ?";
     <table class='dados-table'>
         <thead>
             <tr>
-                <th>Nome</th>
+                <th>Empresa</th>
                 <th>Cargo</th>
             </tr>
         </thead>

@@ -1,5 +1,3 @@
-  
-
 .container {
   display: flex;
   justify-content: center;
@@ -24,22 +22,22 @@
 }
 
 .calendar-controls button {
-  background-color:  #c94c51; 
-  color: white; 
-  border: none; 
-  padding: 10px 20px; 
-  font-size: 16px; 
-  font-weight: bold; 
-  border-radius: 5px; 
-  cursor: pointer; 
-  transition: background-color 0.3s ease; 
-  margin: 0 5px; 
+  background-color: #c94c51;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 40px;
+  transition: background-color 0.3s ease;
+  margin: 0 5px;
 }
 
 .calendar-controls button:active {
-  background-color: #aa3d40; ; 
+  background-color: #aa3d40;
 }
-
 
 .calendar table {
   width: 100%;

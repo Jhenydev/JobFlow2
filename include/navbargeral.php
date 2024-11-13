@@ -6,7 +6,7 @@
                 $logo = "white.png";
             ?>
                 <li><a href="index.php?logout"><i class="fa fa-sign-out-alt"></i> Sair</a></li>
-                <li><a href="principal.php"></i>Serviços</a></li>
+                <li><a href="principal.php"></i>Perfil</a></li>
             <?php
             } else {
                 $logo = "logojob.png";

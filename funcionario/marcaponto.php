@@ -128,7 +128,7 @@ WHERE cadastro_fun.cpf = ?";
     while ($registro = $comando->fetch()) {
         extract($registro, EXTR_PREFIX_ALL, "campo");
     
-        echo "<input type = 'radio' name = 'empresa' value = '$campo_empresa' required >$campo_empresa<br>"; //nome
+        echo "<input type = 'radio' name = 'empresa' value = '$campo_nome' required >$campo_nome<br>"; 
     }
 
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["tipo"]) && $_POST["tipo"] === "JUSTIFICAR") {
