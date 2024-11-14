@@ -117,6 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <h3>Esqueceu de Marcar?</h3>
                 <hr style="width: 100%; margin: 20px auto;">
 
+<<<<<<< HEAD
                 <?php
                 $sql = "SELECT  empresa, usuarios.nome 
                 FROM cadastro_fun INNER JOIN usuarios ON (empresa = id_usuario) 
@@ -160,6 +161,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <br><br>
                     <label for="entrada">Entrada</label>
                     <input type="time" name="entrada" id="entrada" required>
+=======
+        <form method="POST">
+            <?php 
+            $sql = "SELECT empresa, usuarios.nome 
+                    FROM cadastro_fun 
+                    INNER JOIN usuarios ON (empresa = id_usuario) 
+                    WHERE cadastro_fun.cpf = ?";
+            $comando = $banco->prepare($sql);
+            $comando->execute(array($_SESSION["usuario"]["cpf"]));
+
+            while ($registro = $comando->fetch()) {
+                extract($registro, EXTR_PREFIX_ALL, "campo");
+
+                // Exibe os botões de rádio para selecionar a empresa
+                echo "<input type='radio' name='empresa' value='$campo_empresa' required>$campo_nome<br>"; 
+            }
+            ?>
+
+            <label for="entrada">Entrada</label>
+            <input type="time" name="entrada" id="entrada" required>
+>>>>>>> 49bc220c8b89092a094f41afd7804010360be66d
 
                     <label for="saida">Saída</label>
                     <input type="time" name="saida" id="saida" required>
@@ -177,6 +199,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     <div class="espaco">
 
+<<<<<<< HEAD
+=======
+            <button type="submit" name="tipo" value="JUSTIFICAR">Justificar</button>
+        </form>
+
+        <?php 
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["tipo"]) && $_POST["tipo"] === "JUSTIFICAR") {
+            // Preparar SQL para inserir os dados no banco
+            $sql = "INSERT INTO justificar (id_usuario, empresa, justificativa, data, entrada, saida)
+                    VALUES (:id_usuario, :empresa, :justificativa, :data, :entrada, :saida)";
+            $comando = $banco->prepare($sql);
+
+            // Passa os valores capturados pelo POST
+            $comando->bindParam(':id_usuario', $_SESSION["usuario"]["id_usuario"]);
+            $comando->bindParam(':empresa', $_POST["empresa"]);
+            $comando->bindParam(':justificativa', $_POST["justificativa"]);
+            $comando->bindParam(':data', $_POST["data"]);
+            $comando->bindParam(':entrada', $_POST["entrada"]);
+            $comando->bindParam(':saida', $_POST["saida"]);
+
+            // Executa e verifica o resultado
+            if ($comando->execute()) {
+                echo "<p>Mensagem enviada com sucesso!</p>";
+                header("Location: ../funcionario/marcaponto.php");
+                exit;
+            } else {
+                echo "<p>Erro ao enviar a mensagem</p>";
+            }
+        }
+        ?>
+    </div>  
+</div>
+>>>>>>> 49bc220c8b89092a094f41afd7804010360be66d
     </div>
 
 
