@@ -5,6 +5,11 @@ body {
   text-align: center;
 }
 
+.config{
+  color: white;
+  cursor: pointer;
+}
+
 .buttons-container {
   display: flex;
   flex-direction: column;

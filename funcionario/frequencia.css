@@ -5,6 +5,11 @@
   margin: 20px;
 }
 
+.config{
+  color: white;
+  cursor: pointer;
+}
+
 .calendar {
   flex: 2;
   background-color: white;
