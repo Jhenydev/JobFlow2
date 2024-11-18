@@ -9,6 +9,11 @@ body {
   background-color: #f6f6f6;
 }
 
+.config{
+  color: white;
+  cursor: pointer;
+}
+
 .calendar {
   flex: 2;
   background-color: white;

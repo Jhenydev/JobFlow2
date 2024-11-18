@@ -5,6 +5,11 @@ body {
   text-align: center;
 }
 
+.config{
+  color: white;
+  cursor: pointer;
+}
+
 h1 {
   color: #333;
 }
