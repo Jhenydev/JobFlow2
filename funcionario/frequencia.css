@@ -5,6 +5,10 @@
   margin: 20px;
 }
 
+body {
+  background-color: #f6f6f6;
+}
+
 .calendar {
   flex: 2;
   background-color: white;
