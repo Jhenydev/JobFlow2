@@ -1,208 +1,157 @@
 <?php
 session_start();
-include_once '../include/conexao.php'; 
+include_once '../include/conexao.php';
 
 include '../include/headerfuncionario.php';
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <!--  This file has been downloaded from bootdey.com @bootdey on twitter -->
-    <!--  All snippets are MIT license http://bootdey.com/license -->
-    <title>Edit profile page - Bootdey.com</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <style type="text/css">
-    	
-body{
-    background:#f5f5f5;
-}
-/**
- * Panels
- */
-/*** General styles ***/
-.panel {
-  box-shadow: none;
-}
-.panel-heading {
-  border-bottom: 0;
-}
-.panel-title {
-  font-size: 17px;
-}
-.panel-title > small {
-  font-size: .75em;
-  color: #999999;
-}
-.panel-body *:first-child {
-  margin-top: 0;
-}
-.panel-footer {
-  border-top: 0;
-}
-
-.panel-default > .panel-heading {
-    color: #333333;
-    background-color: transparent;
-    border-color: rgba(0, 0, 0, 0.07);
-}
-
-form label {
-    color: #999999;
-    font-weight: 400;
-}
-
-.form-horizontal .form-group {
-  margin-left: -15px;
-  margin-right: -15px;
-}
-@media (min-width: 768px) {
-  .form-horizontal .control-label {
-    text-align: right;
-    margin-bottom: 0;
-    padding-top: 7px;
-  }
-}
-
-.profile__contact-info-icon {
-    float: left;
-    font-size: 18px;
-    color: #999999;
-}
-.profile__contact-info-body {
-    overflow: hidden;
-    padding-left: 20px;
-    color: #999999;
-}
-.profile-avatar {
-  width: 200px;
-  position: relative;
-  margin: 0px auto;
-  margin-top: 196px;
-  border: 4px solid #f3f3f3;
-}
-    </style>
+  <meta charset="utf-8">
+  <!--  This file has been downloaded from bootdey.com @bootdey on twitter -->
+  <!--  All snippets are MIT license http://bootdey.com/license -->
+  <title>Edit profile page - Bootdey.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<div class="container bootstrap snippets bootdeys">
-<div class="row">
-  <div class="col-xs-12 col-sm-9">
-    <form class="form-horizontal">
-        <div class="panel panel-default">
-          <div class="panel-body text-center">
-           <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="img-circle profile-avatar" alt="User avatar">
-          </div>
-        </div>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-        <h4 class="panel-title">User info</h4>
-        </div>
-        <div class="panel-body">
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Location</label>
-            <div class="col-sm-10">
-              <select class="form-control">
-                <option selected="">Select country</option>
-                <option>Belgium</option>
-                <option>Canada</option>
-                <option>Denmark</option>
-                <option>Estonia</option>
-                <option>France</option>
-              </select>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <div class="container bootstrap snippets bootdeys">
+    <div class="row">
+      <div class="col-xs-12 col-sm-9">
+        <form class="form-horizontal">
+          <div class="panel panel-default">
+            <div class="panel-body text-center">
+              <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="img-circle profile-avatar" alt="User avatar">
             </div>
           </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Company name</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Position</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control">
-            </div>
-          </div>
-        </div>
-      </div>
+          <?php
+          $sql = "SELECT * FROM usuarios WHERE id_funcionario = :id";
+          $comando = $banco->prepare($sql);
+          $comando->bindParam(":id", $id_funcionario);
+          $comando->execute();
 
-      <div class="panel panel-default">
-        <div class="panel-heading">
-        <h4 class="panel-title">Contact info</h4>
-        </div>
-        <div class="panel-body">
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Work number</label>
-            <div class="col-sm-10">
-              <input type="tel" class="form-control">
+          if ($registro = $comando->fetch()) {
+            extract($registro, EXTR_PREFIX_ALL, "campo");
+          } else {
+            // Definir valores padrão ou exibir mensagem de erro
+            $campo_nome = $campo_cpf =  $campo_data_nascimento = $campo_telefone = $campo_cep = $campo_endereco = $campo_bairro = $campo_cidade = $campo_estado = $campo_email = $campo_senha = "";
+            echo "<p>Funcionário não encontrado.</p>";
+          }
+          ?>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">informações do usuario</h4>
             </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Mobile number</label>
-            <div class="col-sm-10">
-              <input type="tel" class="form-control">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">E-mail address</label>
-            <div class="col-sm-10">
-              <input type="email" class="form-control">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Work address</label>
-            <div class="col-sm-10">
-              <textarea rows="3" class="form-control"></textarea>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="panel panel-default">
-        <div class="panel-heading">
-        <h4 class="panel-title">Security</h4>
-        </div>
-        <div class="panel-body">
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Current password</label>
-            <div class="col-sm-10">
-              <input type="password" class="form-control">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">New password</label>
-            <div class="col-sm-10">
-              <input type="password" class="form-control">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-10 col-sm-offset-2">
-              <div class="checkbox">
-                <input type="checkbox" id="checkbox_1">
-                <label for="checkbox_1">Make this account public</label>
+            <div class="panel-body">
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Nome</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="nome" name="nome" value="<?php echo $campo_nome; ?>" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Sexualidade</label>
+                <div class="col-sm-10">
+                  <select class="form-control">
+                    <option selected=""></option>
+                    <option>Masculina</option>
+                    <option>Feminina</option>
+                    <option>Outros</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">cPF</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="cpf" name="cpf" value="<?php echo $campo_cpf; ?>" readonly>
+                </div>
               </div>
             </div>
           </div>
-          <div class="form-group">
-            <div class="col-sm-10 col-sm-offset-2">
-              <button type="submit" class="btn btn-primary">Submit</button>
-              <button type="reset" class="btn btn-default">Cancel</button>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">Localização</h4>
+            </div>
+            <div class="panel-body">
+              <div class="form-group">
+                <label class="col-sm-2 control-label">CEP</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="cep" name="cep" value="<?php echo $campo_cep; ?>" readonly>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Endereco</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="endereco" name="endereco" value="<?php echo $campo_endereco; ?>" readonly>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Bairro</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="bairro" name="bairro" value="<?php echo $campo_bairro; ?>" readonly>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Cidade</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="cidade" name="cidade" value="<?php echo $campo_cidade; ?>" readonly>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Estado</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="estado" name="estado" value="<?php echo $campo_estado; ?>" readonly>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">Segurança</h4>
+            </div>
+            <div class="panel-body">
+              <div class="form-group">
+                <label class="col-sm-2 control-label">E-mail</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="email" name="email" value="<?php echo $campo_email; ?>" readonly>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Senha Atual</label>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control" id="senha" name="senha" value="<?php echo $campo_senha; ?>" readonly>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Nova senha</label>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Confirme a nova senha</label>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-10 col-sm-offset-2">
+                  <input type="submit" value="Continuar">
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
-    </form>
+    </div>
   </div>
-</div>
-</div>
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-	
-</script>
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+
+  </script>
 </body>
+
 </html>

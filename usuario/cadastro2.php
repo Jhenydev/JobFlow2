@@ -111,9 +111,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" name="cpf" id="cpf" placeholder="Digite seu CPF" required>
 
         <div id="employeeFields" style="display: none;">
-            <label for="sexo">Sexo</label>
+            <label for="sexo">Sexo</lab el>
             <select name="sexo" id="sexo">
-                <option value="">Selecione</option>
                 <option value="Feminino">Feminino</option>
                 <option value="Masculino">Masculino</option>
             </select>
