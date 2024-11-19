@@ -4,7 +4,7 @@ include_once '../include/conexao.php';
 
 include '../include/headerfuncionario.php';
 
-
+$aviso = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         $empresa = $_POST["empresa"];
@@ -13,39 +13,74 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $data_atual = date('Y-m-d');
 
         if ($hora_tipo) {
-            if ($hora_tipo == 'entrada') {
-                $sql = "INSERT INTO marca_ponto
-                (id_usuario, empresa, data, hora_entrada)
-                VALUES (:id_usuario, :empresa, :data, :hora)";
-            } else {
-                $sql = "UPDATE marca_ponto set hora_saida = :hora
-                where id_usuario = :id_usuario and empresa = :empresa";
-            }
-
-
-            $comando = $banco->prepare($sql);
-
-
-            $comando->bindParam(':id_usuario', $_SESSION["usuario"]["id_usuario"]);
-
-            $comando->bindParam(':empresa', $empresa);
-            $comando->bindParam(':hora', $hora_atual);
-            if ($hora_tipo == 'entrada') {
+            if ($hora_tipo == 'entrada'){
+                $sql = "SELECT * FROM marca_ponto
+                    WHERE id_usuario = :id_usuario AND empresa = :empresa
+                    AND data = :data
+                    AND hora_saida is null";
+                $comando = $banco->prepare($sql);
+                $comando->bindParam(':id_usuario', $_SESSION["usuario"]["id_usuario"]);
+                $comando->bindParam(':empresa', $empresa);
                 $comando->bindParam(':data', $data_atual);
-            }
+                $comando->execute();
+                if ($registro = $comando->fetch()) {
+                    // já existe entrada desse funcionario nessa empresa nesta data
+                    $aviso = 'Você já marcou o ponto de entrada '.$registro["hora_entrada"];
+                } else {
+                    // não existe entrada
+                    $sql = "INSERT INTO marca_ponto
+                    (id_usuario, empresa, data, hora_entrada)
+                    VALUES (:id_usuario, :empresa, :data, :hora)";
+                    $comando = $banco->prepare($sql);
+                    $comando->bindParam(':id_usuario', $_SESSION["usuario"]["id_usuario"]);
+                    $comando->bindParam(':empresa', $empresa);
+                    $comando->bindParam(':hora', $hora_atual);
+                    $comando->bindParam(':data', $data_atual);
 
-
-            if ($comando->execute()) {
-                echo "Ponto de $hora_tipo registrado com sucesso!";
-                $_SESSION["ultimaMarcacao"] = "$hora_tipo - " . date('H:i:s');
+                    if ($comando->execute()) {
+                        $aviso = "Ponto de $hora_tipo registrado com sucesso!";
+                        $_SESSION["ultimaMarcacao"] = "$hora_tipo - " . date('H:i:s');
+                    } else {
+                        $aviso = "Erro ao marcar o ponto.";
+                    }
+                }
             } else {
-                echo "Erro ao marcar o ponto.";
+                $sql = "SELECT * FROM marca_ponto
+                    WHERE id_usuario = :id_usuario AND empresa = :empresa
+                    AND data = :data
+                    AND hora_saida is null";
+                $comando = $banco->prepare($sql);
+                $comando->bindParam(':id_usuario', $_SESSION["usuario"]["id_usuario"]);
+                $comando->bindParam(':empresa', $empresa);
+                $comando->bindParam(':data', $data_atual);
+                $comando->execute();
+                if ($registro = $comando->fetch()) {
+                    // já existe entrada desse funcionario nessa empresa nesta data
+                    $sql = "UPDATE marca_ponto set hora_saida = :hora
+                    where id_usuario = :id_usuario and empresa = :empresa";
+                    $comando = $banco->prepare($sql);
+                    $comando->bindParam(':id_usuario', $_SESSION["usuario"]["id_usuario"]);
+                    $comando->bindParam(':empresa', $empresa);
+                    $comando->bindParam(':hora', $hora_atual);
+
+                    if ($comando->execute()) {
+                        $aviso = "Ponto de $hora_tipo registrado com sucesso!";
+                        $_SESSION["ultimaMarcacao"] = "$hora_tipo - " . date('H:i:s');
+                    } else {
+                        $aviso = "Erro ao marcar o ponto.";
+                    }
+                } else {
+                    $aviso = 'Você não marcou o ponto de entrada!';
+                }
             }
+            
         } else {
-            echo "Erro: Tipo de marcação não especificado.";
+            $aviso = "Erro: Tipo de marcação não especificado.";
         }
     } catch (PDOException $e) {
-        echo "Erro: " . $e->getMessage();
+
+        $aviso = "Erro: " . $e->getMessage();
+
     }
 }
 ?>
@@ -101,6 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 </div>
             </form>
+            <?php if($aviso<>"") echo $aviso; ?>
         </div>
 
         <div class="buttons-container">

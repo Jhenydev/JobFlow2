@@ -5,6 +5,10 @@
   margin: 20px;
 }
 
+body {
+  background-color: #f6f6f6;
+}
+
 .config{
   color: white;
   cursor: pointer;
