@@ -18,7 +18,7 @@
             <li><a href="../usuario/index.php">Home</a></li>
             <li><a href="../usuario/quemsomos.php">Quem somos</a></li>
             <li><a href="../usuario/coberturas.php">Coberturas</a></li>
-            <li><a href="../usuario/contato.php">Contato</a></li>
+            <li><a href="../usuario/contato.php">Contato</a></li>           
         </ul>
         <a href="index.php" class="logo" style="margin-right: 100px;">
             <img src="<?php echo $logo; ?>" alt="Logo JobFlow">
