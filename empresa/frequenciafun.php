@@ -33,7 +33,7 @@ if (!$id_funcionario) {
 
     <div class="data-preview">
     <?php
-        $sql = "SELECT empresa, usuarios.nome 
+        $sql = "SELECT nome
                 FROM cadastro_fun 
                 INNER JOIN usuarios ON (empresa = id_usuario) 
                 WHERE id_funcionario = ?";
@@ -96,13 +96,13 @@ if (!$id_funcionario) {
         }
 
         // Função para buscar dados do banco de dados via PHP
-        function fetchDataFromDatabase(date, empresa) {
+        function fetchDataFromDatabase(date) {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', `fetch_datafun.php?date=${date}&empresa=${empresa}`, true);
     xhr.onload = function() {
         if (this.status === 200) {
             const dataContent = document.getElementById('data-content');
-            dataContent.innerHTML = this.responseText || `<p>Nenhum dado disponível para ${date} e empresa ${empresa}</p>`;
+            dataContent.innerHTML = this.responseText || `<p>Nenhum dado disponível para ${date}</p>`;
         }
     };
     xhr.send();
@@ -115,17 +115,10 @@ if (!$id_funcionario) {
             if (selectedDate && selectedEmpresa) { 
                 fetchDataFromDatabase(selectedDate, selectedEmpresa); 
             } else {
-                document.getElementById('data-content').innerHTML = "<p>Por favor, selecione uma data e uma empresa.</p>";
+                document.getElementById('data-content').innerHTML = "<p>Por favor, selecione uma data.</p>";
             }
         }
 
-        // Evento para capturar a empresa selecionada
-        document.querySelectorAll('input[name="empresa"]').forEach((radio) => {
-            radio.addEventListener('change', function() {
-                selectedEmpresa = this.value;
-                checkAndFetchData();
-            });
-        });
 
         document.getElementById('prev-month').addEventListener('click', function() {
             currentDate.setMonth(currentDate.getMonth() - 1);
