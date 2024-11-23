@@ -1,6 +1,14 @@
 <?php
 include '../include/headerfuncionario.php';
 include_once '../include/conexao.php'; 
+
+$id_funcionario = $_GET['id'] ?? null;
+
+if (!$id_funcionario) {
+    echo "<p>Funcionário não encontrado.</p>";
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -28,9 +36,9 @@ include_once '../include/conexao.php';
         $sql = "SELECT empresa, usuarios.nome 
                 FROM cadastro_fun 
                 INNER JOIN usuarios ON (empresa = id_usuario) 
-                WHERE cadastro_fun.cpf = ?";
+                WHERE id_funcionario = ?";
         $comando = $banco->prepare($sql);
-        $comando->execute(array($_SESSION["usuario"]["cpf"]));
+        $comando->execute(array($_REQUEST["id"]));
     ?>
         <br><br>
         <h3>Visualização de Dados</h3>
@@ -90,7 +98,7 @@ include_once '../include/conexao.php';
         // Função para buscar dados do banco de dados via PHP
         function fetchDataFromDatabase(date, empresa) {
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', `fetch_data.php?date=${date}&empresa=${empresa}`, true);
+    xhr.open('GET', `fetch_datafun.php?date=${date}&empresa=${empresa}`, true);
     xhr.onload = function() {
         if (this.status === 200) {
             const dataContent = document.getElementById('data-content');
@@ -103,6 +111,7 @@ include_once '../include/conexao.php';
 
         // Função para verificar se a data e a empresa foram selecionadas antes de buscar dados
         function checkAndFetchData() {
+            selectedEmpresa = <?php echo $_REQUEST["id"]; ?>;
             if (selectedDate && selectedEmpresa) { 
                 fetchDataFromDatabase(selectedDate, selectedEmpresa); 
             } else {

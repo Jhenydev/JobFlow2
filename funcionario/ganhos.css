@@ -9,6 +9,7 @@ body {
   padding: 20px;
   background-color: #fff;
   border-radius: 10px;
+  margin-top: 40px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -22,6 +23,7 @@ body {
   background-color:#c94c51;
   text-align: center;
   padding: 15px;
+  border-radius: 8px;
 
 }
 
@@ -64,10 +66,44 @@ body {
   text-decoration: none;
 }
 
+/* Estilo para o grupo de selecione a empresa */
+.filter {
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.filter .form-check-input {
+  margin-right: 10px;  
+}
+
+
+.filter select {
+  width: 100%;  
+  max-width: 250px;  
+  margin-top: 10px;
+}
+
+/* Estilo para o botão de enviar */
+input[type="submit"] {
+  display: block;
+  width: 200px; /* Largura do botão */
+  margin: 20px auto; /* Centraliza o botão e coloca um espaço acima */
+  background-color:#c94c51;
+  color: #fff; /* Cor do texto */
+  border: none; /* Remove borda */
+  padding: 10px 20px; /* Espaçamento interno */
+  border-radius: 5px; /* Bordas arredondadas */
+}
+
+.espaco {
+  padding: 50px;
+}
+
 @media (max-width: 576px) {
   .container {
       padding: 15px;
-      width: 70%;
+      width: 95%;
   }
   .titulo h3 {
       font-size: 28px;
