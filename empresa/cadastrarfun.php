@@ -20,11 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Preparar o comando para inserir o funcionário
             $sql = "INSERT INTO cadastro_fun
                 (id_funcionario, nome, cpf, cargo, cep, valor_hora, data_inicio, empresa)
-                VALUES (NULL, :nome, :cpf, :cargo, :cep, :valor_hora, CURDATE(), :empresa)";
+                VALUES (:id_funcionario, :nome, :cpf, :cargo, :cep, :valor_hora, CURDATE(), :empresa)";
 
             $comando = $banco->prepare($sql);
 
             // Bind dos parâmetros
+            $comando->bindParam(':id_funcionario',$id_usuario);
             $comando->bindParam(':nome', $_POST["nome"]);
             $comando->bindParam(':cpf', $_POST["cpf"]);
             $comando->bindParam(':cargo', $_POST["cargo"]);

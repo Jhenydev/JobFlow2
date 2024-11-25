@@ -32,8 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     (id_usuario, empresa, data, hora_entrada)
                     VALUES (:id_usuario, :empresa, :data, :hora)";
                     $comando = $banco->prepare($sql);
-                    $comando->bindParam(':id_usuario', $empresa);
-                    $comando->bindParam(':empresa', $_SESSION["usuario"]["id_usuario"]); 
+                    $comando->bindParam(':id_usuario', $_SESSION["usuario"]["id_usuario"]);
+                    $comando->bindParam(':empresa', $empresa ); 
                     $comando->bindParam(':hora', $hora_atual);
                     $comando->bindParam(':data', $data_atual);
 

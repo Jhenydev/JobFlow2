@@ -5,9 +5,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require 'PHPMailer-master/src/Exception.php';
-require 'PHPMailer-master/src/PHPMailer.php';
-require 'PHPMailer-master/src/SMTP.php';
+require '../usuario/PHPMailer-master/src/Exception.php';
+require '../usuario/PHPMailer-master/src/PHPMailer.php';
+require '../usuario/PHPMailer-master/src/SMTP.php';
 
 if (isset($_POST["email"])) {
     $sql = "SELECT * FROM usuarios WHERE email=?";

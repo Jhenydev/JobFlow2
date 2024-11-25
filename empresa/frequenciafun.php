@@ -33,24 +33,24 @@ if (!$id_funcionario) {
 
     <div class="data-preview">
     <?php
-        $sql = "SELECT nome
+        $sql = "SELECT cadastro_fun.nome
                 FROM cadastro_fun 
                 INNER JOIN usuarios ON (empresa = id_usuario) 
                 WHERE id_funcionario = ?";
         $comando = $banco->prepare($sql);
         $comando->execute(array($_REQUEST["id"]));
     ?>
-        <br><br>
         <h3>Visualização de Dados</h3>
         <div id="data-content">Selecione uma data para ver os dados.</div>
     </div>
-</div>
+    
+
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         let currentDate = new Date();
-        let selectedDate = ""; // Variável para armazenar a data selecionada
-        let selectedEmpresa = ""; // Variável para armazenar a empresa selecionada
+        let selectedDate = ""; 
+        let selectedEmpresa = ""; 
 
         // Função para renderizar o calendário
         function renderCalendar(year, month) {
@@ -97,8 +97,10 @@ if (!$id_funcionario) {
 
         // Função para buscar dados do banco de dados via PHP
         function fetchDataFromDatabase(date) {
+            var idUsuario = <?php echo $id_funcionario;?>;
+
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', `fetch_datafun.php?date=${date}&empresa=${empresa}`, true);
+    xhr.open('GET', `fetch_datafun.php?date=${date}&idUsuario=${idUsuario}`, true);
     xhr.onload = function() {
         if (this.status === 200) {
             const dataContent = document.getElementById('data-content');
