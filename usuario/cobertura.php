@@ -1,3 +1,7 @@
+<?php
+    include "../include/topo.php"; // Inclui o cabeçalho, caso necessário
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -13,7 +17,6 @@
             background: linear-gradient(180deg, #f4f4f9 50%, #e8e8f3 100%);
         }
 
-        
         .section {
             display: flex;
             flex-wrap: wrap;
@@ -32,7 +35,6 @@
             background: linear-gradient(135deg, #eef1f7, #fff);
         }
 
-        
         .text-content {
             flex: 1;
             min-width: 300px;
@@ -75,7 +77,6 @@
             box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
         }
 
-        
         .image-content {
             flex: 1;
             min-width: 300px;
@@ -100,7 +101,6 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
 
-        
         @media (max-width: 768px) {
             .section {
                 flex-direction: column;
@@ -132,13 +132,13 @@
             <a href="#" class="btn">Eu quero minha conta JobFlow</a>
         </div>
         <div class="image-content">
-            <img src="../img/Img1tcc.png" alt="Imagem descritiva">
+            <img src="../img/cobertura1.jpg" alt="Imagem descritiva">
         </div>
     </div>
 
     <div class="section">
         <div class="image-content">
-            <img src="img/image.png" alt="Imagem descritiva">
+            <img src="../img/controleg.png" alt="Imagem descritiva">
         </div>
         <div class="text-content">
             <h1>Controle Preciso de Horas Trabalhadas</h1>
@@ -156,13 +156,13 @@
             </p>
         </div>
         <div class="image-content">
-            <img src="img/image.png" alt="Imagem descritiva">
+            <img src="../img/cobertura4.png" alt="Imagem descritiva">
         </div>
     </div>
 
     <div class="section">
         <div class="image-content">
-            <img src="img/image.png" alt="Imagem descritiva">
+            <img src="../img/ganhos.png" alt="Imagem descritiva">
         </div>
         <div class="text-content">
             <h1>Transparência nos Ganhos dos Funcionários</h1>
@@ -170,19 +170,11 @@
                 Forneça relatórios claros sobre os ganhos, promovendo confiança e satisfação.
             </p>
         </div>
-    </div>
-
-    <div class="section">
-        <div class="text-content">
-            <h1>Relatórios Automáticos e Eficientes</h1>
-            <p>
-                Gere relatórios automáticos para tomar decisões rápidas e estratégicas.
-            </p>
-        </div>
-        <div class="image-content">
-            <img src="img/image.png" alt="Imagem descritiva">
-        </div>
-    </div>
+    </div>   
+    
+    <?php
+include "../include/rodape.php";
+?>
 
 </body>
 </html>
