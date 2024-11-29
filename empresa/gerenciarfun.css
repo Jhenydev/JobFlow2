@@ -1,6 +1,6 @@
 body {
   font-family: "Arial", sans-serif;
-  background-color: #f4f4f4;
+  background-color: #f6f6f6;
   margin: 0;
   padding: 0;
 }
@@ -43,10 +43,9 @@ body {
 }
 
 .card img {
-  border-radius: 50%;
   width: 70px;
   height: 70px;
-  margin-right: 20px;
+  margin-left:10px;
 }
 
 .card .dados {
@@ -75,5 +74,5 @@ body {
 }
 
 .button:hover {
-  background-color: #ff5a00;
+  background-color: #f69d3b;
 }

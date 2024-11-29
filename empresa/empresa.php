@@ -105,7 +105,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['aceitar'])) {
     <link rel="stylesheet" href="empresa.css">
     <link rel="stylesheet" href="notificacoes.css">
 </head>
-
+<?php
+include '../include/headerfuncionario.php';
+?>
 <body>
 
 
@@ -176,7 +178,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['aceitar'])) {
     </div>
 
     <div class="data-preview">
-        <h3>Modificar dia</h3>
+
 
         <?php
         $sql = "UPDATE marca_ponto SET hora_entrada = :hora_entrada, hora_saida = :hora_saida
@@ -190,15 +192,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['aceitar'])) {
 
 
         if ($comando->execute()) {
-            echo "sucesso!";
+            
         } else {
             echo "Erro ao executar a atualização.";
         }
         ?>
 
-        <div class="diaselec">
-            <h5><?php echo $dia; ?></h5>
-        </div>
+       
 
 
     </div>

@@ -1,6 +1,5 @@
 <?php
 $css = "cadastrarfun.css";
-$navbar = "navbarempresa.php";
 include "../include/topo.php";
 
 // Inicializa variável para mensagens de alerta
@@ -55,10 +54,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </head>
+<?php
+include '../include/headerfuncionario.php';
+?>
 <body>
     <div class="container">
         <div>
-            <img src="user_image_placeholder.png" alt="Ícone de Funcionário">
+            <img src="../img/cadastraricon.png" alt="Ícone de Funcionário">
             <div class="back-button">
             </div>
         </div>

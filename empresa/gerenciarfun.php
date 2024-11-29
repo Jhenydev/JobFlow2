@@ -4,8 +4,11 @@ $navbar = "navbarempresa.php";
 include "../include/topo.php";
 
 ?>
-
+<?php
+include '../include/headerfuncionario.php';
+?>
 <body>
+    
 
     <div class="container">
         <?php
@@ -17,17 +20,18 @@ include "../include/topo.php";
             extract($registro, EXTR_PREFIX_ALL, "campo");
 
             echo "
-        <div class='card'>
-            <img src='https://via.placeholder.com/70' alt='Avatar'>
-            <div class='dados'>
-                <h2 class='nome'>$campo_nome</h2>
-                <p class='cpf'>$campo_cpf</p>
-                <p class='cep'>$campo_cep</p>
-                <br>
-                <a href='geren2.php?id=$campo_id_funcionario' class='button'>GERENCIAR</a>
+            <div class='card'>
+                <img src='../img/identidade.png' alt='Ícone'>
+                <div class='dados'>
+                    <h2 class='nome'>$campo_nome</h2>
+                    <p class='cpf'>" . preg_replace('/(\d{3})(\d{3})(\d{3})(\d{2})/', '$1.$2.$3-$4', $campo_cpf) . "</p>
+                    <p class='cep'>$campo_cargo</p>
+                    <br>
+                    <a href='geren2.php?id=$campo_id_funcionario' class='button'>GERENCIAR</a>
+                </div>
             </div>
-        </div>
         ";
+        
         }
         ?>
     </div>

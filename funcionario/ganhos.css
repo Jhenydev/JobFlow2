@@ -52,7 +52,10 @@ body {
 
 .filter {
   margin-bottom: 30px;
+  margin-right: 600px;
+
 }
+
 
 .footer {
   text-align: center;
@@ -71,10 +74,6 @@ body {
   padding: 15px;
   border-radius: 8px;
   margin-bottom: 20px;
-}
-
-.filter .form-check-input {
-  margin-right: 10px;  
 }
 
 

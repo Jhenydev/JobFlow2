@@ -79,11 +79,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </head>
-
+<?php
+include '../include/headerfuncionario.php';
+?>
 <body>
-    <div class="header">
-        EDITAR OU REMOVER FUNCIONÁRIO
-    </div>
 
     <div class="container">
 
