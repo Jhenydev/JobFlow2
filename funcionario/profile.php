@@ -4,33 +4,23 @@ include_once '../include/conexao.php';
 include '../include/headerfuncionario.php';
 
 if (isset($_POST['Gravar'])) {
-  // Início da consulta SQL
   $sql = "UPDATE usuarios SET 
-      nome = :nome,
-      foto = :foto,
-      sexo = :sexo,
-      data_nascimento = :data_nascimento,
-      cep = :cep,
-      endereco = :endereco,
-      bairro = :bairro,
-      cidade = :cidade,
-      estado = :estado,
-      telefone = :telefone, 
-      email = :email";
-
-  // Verifica se o campo senha foi preenchido
-  if (!empty($_POST['senha'])) {
-    $sql .= ", senha = :senha";
-  }
+        nome = :nome,
+        sexo = :sexo,
+        data_nascimento = :data_nascimento,
+        cep = :cep,
+        endereco = :endereco,
+        bairro = :bairro,
+        cidade = :cidade,
+        estado = :estado,
+        telefone = :telefone,
+        email = :email";
 
   $sql .= " WHERE id_usuario = :id_usuario";
 
   $comando = $banco->prepare($sql);
-
-  // Bind dos parâmetros obrigatórios
   $comando->bindParam(':id_usuario', $_SESSION["usuario"]["id_usuario"]);
   $comando->bindParam(':nome', $_POST['nome']);
-  $comando->bindParam(':foto', $_POST['foto']);
   $comando->bindParam(':sexo', $_POST['sexo']);
   $comando->bindParam(':data_nascimento', $_POST['data_nascimento']);
   $comando->bindParam(':cep', $_POST['cep']);
@@ -41,11 +31,6 @@ if (isset($_POST['Gravar'])) {
   $comando->bindParam(':telefone', $_POST['telefone']);
   $comando->bindParam(':email', $_POST['email']);
 
-  // Bind do parâmetro de senha somente se for preenchido
-  if (!empty($_POST['senha'])) {
-    $comando->bindParam(':senha', $_POST['senha']);
-  }
-
   // Execução da consulta
   if ($comando->execute()) {
     $aviso = "Dados atualizados com sucesso!";
@@ -53,8 +38,35 @@ if (isset($_POST['Gravar'])) {
     $aviso = "Erro ao atualizar dados.";
   }
 }
+if (isset($_POST['Gravar_Senha'])) {
 
 
+  $sql = "SELECT * FROM usuarios WHERE id_usuario = :id_usuario and senha = :senha";
+  $comando = $banco->prepare($sql);
+  $comando->bindParam(':id_usuario', $_SESSION["usuario"]["id_usuario"]);
+  $comando->bindParam(':senha', $_POST['senha']);
+  $comando->execute();
+  if ($registro = $comando->fetch()) {
+    $sql = "UPDATE usuarios SET 
+      senha = :nova_senha
+     WHERE id_usuario = :id_usuario";
+
+    $comando = $banco->prepare($sql);
+    $comando->bindParam(':id_usuario', $_SESSION["usuario"]["id_usuario"]);
+    $comando->bindParam(':nova_senha', $_POST['nova_senha']);
+
+    // Execução da consulta
+    if ($comando->execute()) {
+      $aviso = "Senha atualizada com sucesso!";
+    } else {
+      $aviso = "Erro ao atualizar senha.";
+    }
+  } else {
+    $aviso = "Senha atual incorreta.!";
+  }
+
+  echo $aviso;
+}
 ?>
 
 <!DOCTYPE html>
@@ -77,28 +89,9 @@ if (isset($_POST['Gravar'])) {
         <form class="form-horizontal" action="profile.php" method="POST">
           <div class="panel panel-default">
             <div class="panel-body text-center">
-              <img id="cep" name="cep" value="<?php echo $_SESSION['usuario']['foto']; ?>
-              class=" img-circle profile-avatar" alt="User avatar" style="width: 150px; height: 150px; object-fit: cover;">
-              <br><br>
-              <label for="upload-photo" class="btn btn-primary">Selecionar Foto</label>
-              <input type="file" id="upload-photo" name="foto_usuario" accept="image/*" style="display: none;">
+              <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="img-circle profile-avatar" alt="User avatar">
             </div>
           </div>
-
-          <?php
-          /*$sql = "SELECT * FROM usuarios WHERE id_funcionario = :id";
-          $comando = $banco->prepare($sql);
-          $comando->bindParam(":id", $id_funcionario);
-
-          if ($registro = $comando->fetch()) {
-            extract($registro, EXTR_PREFIX_ALL, "campo");
-          } else {
-            // Definir valores padrão ou exibir mensagem de erro
-            $campo_nome = $campo_cpf =  $campo_data_nascimento = $campo_telefone = $campo_cep = $campo_endereco = $campo_bairro = $campo_cidade = $campo_estado = $campo_email = $campo_senha = "";
-            echo "<p>Funcionário não encontrado.</p>";
-          }
-          */
-          ?>
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title">informações do usuario</h4>
@@ -113,12 +106,7 @@ if (isset($_POST['Gravar'])) {
               <div class="form-group">
                 <label class="col-sm-2 control-label">Sexualidade</label>
                 <div class="col-sm-10">
-                  <select class="form-control" nome="sexo">
-                    <option value="<?php echo $_SESSION['usuario']['cpf']; ?>"></option>
-                    <option>Masculina</option>
-                    <option>Feminina</option>
-                    <option>Outros</option>
-                  </select>
+                  <input type="text" class="form-control" name="sexo" id="sexo" value="<?php echo $_SESSION['usuario']['sexo']; ?>" required>
                 </div>
               </div>
               <div class="form-group">
@@ -131,6 +119,18 @@ if (isset($_POST['Gravar'])) {
                 <label class="col-sm-2 control-label">CPF</label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control" id="cpf" name="cpf" value="<?php echo $_SESSION['usuario']['cpf']; ?>" readonly>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Telefone</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name="telefone" id="telefone" value="<?php echo $_SESSION['usuario']['telefone']; ?>" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">E-mail</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="email" name="email" value="<?php echo $_SESSION['usuario']['email']; ?>" required>
                 </div>
               </div>
             </div>
@@ -172,23 +172,19 @@ if (isset($_POST['Gravar'])) {
               </div>
             </div>
           </div>
+          <div class="form-group">
+            <div class="col-sm-10 col-sm-offset-2">
+              <input type="submit" value="Alterar dados " name="Gravar">
+            </div>
+          </div>
+        </form>
+        <form class="form-horizontal" action="profile.php" method="POST" id="form_senha">
+          <input type="hidden" name="Gravar_Senha" value="1">
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title">Segurança</h4>
             </div>
-            <div class="form-group">
-              <label class="col-sm-2 control-label">Telefone</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" name="telefone" id="telefone" value="<?php echo $_SESSION['usuario']['telefone']; ?>" required>
-              </div>
-            </div>
             <div class="panel-body">
-              <div class="form-group">
-                <label class="col-sm-2 control-label">E-mail</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="email" name="email" value="<?php echo $_SESSION['usuario']['email']; ?>" required>
-                </div>
-              </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label">Senha Atual</label>
                 <div class="col-sm-10">
@@ -198,18 +194,18 @@ if (isset($_POST['Gravar'])) {
               <div class="form-group">
                 <label class="col-sm-2 control-label">Nova senha</label>
                 <div class="col-sm-10">
-                  <input type="password" class="form-control">
+                  <input type="password" class="form-control" name="nova_senha" id="nova_senha">
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label">Confirme a nova senha</label>
                 <div class="col-sm-10">
-                  <input type="password" class="form-control">
+                  <input type="password" class="form-control" id="confirma_senha">
                 </div>
               </div>
               <div class="form-group">
                 <div class="col-sm-10 col-sm-offset-2">
-                  <input type="submit" value="Continuar" name="Gravar">
+                  <input type="submit" id="trocar_senha" value="Trocar">
                 </div>
               </div>
             </div>
@@ -221,18 +217,29 @@ if (isset($_POST['Gravar'])) {
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
   <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript">
+    const submit = document.getElementById("trocar_senha");
 
+    submit.addEventListener("click", validate);
+
+    function validate(e) {
+      e.preventDefault();
+
+      var senha_atual = document.getElementById("senha").value;
+      var nova_senha = document.getElementById("nova_senha").value;
+      var confirma_senha = document.getElementById("confirma_senha").value;
+
+      if (!senha_atual || !nova_senha || !confirma_senha) {
+        alert("Informe todas as senhas.");
+        return false;
+      } else if (nova_senha != confirma_senha) {
+        alert("As senhas não conferem.");
+        return false;
+      } else {
+        document.getElementById("form_senha").submit()
+        return true;
+      }
+    }
   </script>
 </body>
 
 </html>
-
-<script>
-  document.getElementById('upload-photo').addEventListener('change', function(event) {
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      document.getElementById('profile-avatar').src = e.target.result;
-    };
-    reader.readAsDataURL(event.target.files[0]);
-  });
-</script>

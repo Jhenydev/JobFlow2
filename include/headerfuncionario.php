@@ -13,7 +13,7 @@ if (session_id() == '' || !isset($_SESSION) || session_status() === PHP_SESSION_
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JobFlow</title>
-    <link rel="stylesheet" href="marcaponto.css">
+    <link rel="stylesheet" href="../funcionario/marcaponto.css">
 
 </head>
 

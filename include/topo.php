@@ -11,17 +11,6 @@ if (!isset($_SESSION["usuario"])) {
 
 }
 
-if (isset($area_restrita)) {
-    if (isset($_SESSION["logado"])) {
-        if ($_SESSION["logado"] == 0) {
-            include "../include/arearestrita.php";
-            exit();
-        }
-    } else {
-        include "../include/arearestrita.php";
-        exit();
-    }
-}
 
 include "../include/conexao.php";
 ?>

@@ -3,7 +3,8 @@ $css = "cadastrarfun.css";
 $navbar = "navbarempresa.php";
 include "../include/topo.php";
 
-
+// Inicializa variável para mensagens de alerta
+$mensagemToastr = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
@@ -25,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $comando = $banco->prepare($sql);
 
             // Bind dos parâmetros
-            $comando->bindParam(':id_funcionario',$id_usuario);
+            $comando->bindParam(':id_funcionario', $id_usuario);
             $comando->bindParam(':nome', $_POST["nome"]);
             $comando->bindParam(':cpf', $_POST["cpf"]);
             $comando->bindParam(':cargo', $_POST["cargo"]);
@@ -34,28 +35,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $comando->bindParam(':empresa', $_SESSION["usuario"]["id_usuario"]);
 
             if ($comando->execute()) {
-                echo "Cadastro efetuado com sucesso!";
-                header("location: ../empresa/gerenciarfun.php");
-                exit;
+                $mensagemToastr = "success|Cadastro efetuado com sucesso!";
             } else {
-                echo "Erro ao cadastrar usuário.";
+                $mensagemToastr = "error|Erro ao cadastrar usuário.";
             }
         } else {
-            echo "Usuário não encontrado. Por favor, verifique o CPF.";
+            $mensagemToastr = "warning|Usuário não encontrado. Por favor, verifique o CPF.";
         }
     } catch (PDOException $e) {
-        echo "Erro: " . $e->getMessage();
+        $mensagemToastr = "error|Erro:" . $e->getMessage();
     }
 }
-    
 ?>
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+</head>
 <body>
     <div class="container">
         <div>
             <img src="user_image_placeholder.png" alt="Ícone de Funcionário">
             <div class="back-button">
-
             </div>
         </div>
 
@@ -77,9 +81,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
     <div class="boxvazia"></div>
-    <?php
-    include "../include/rodape.php";
-    ?>
-</body>
+    <?php include "../include/rodape.php"; ?>
 
+    <script>
+        $(document).ready(function () {
+            <?php
+            if (!empty($mensagemToastr)) {
+                list($tipo, $mensagem) = explode('|', $mensagemToastr);
+                echo "toastr.$tipo('$mensagem');";
+            }
+            ?>
+        });
+    </script>
+</body>
 </html>

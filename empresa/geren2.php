@@ -3,6 +3,8 @@ $css = "geren2.css";
 $navbar = "navbarempresa.php";
 include "../include/topo.php";
 
+$mensagemToastr = "";
+
 $id_funcionario = $_GET['id'] ?? null;
 
 if (!$id_funcionario) {
@@ -21,10 +23,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($comando_remover->execute()) {
 
-                header("location: ../empresa/gerenciarfun.php");
+                $mensagemToastr = "success|Funcionario removido com sucesso!";
                 exit;
             } else {
-                echo "Erro ao remover funcionário.";
+                 $mensagemToastr = "error|Erro ao remover funcionário.";
             }
         } catch (PDOException $e) {
             echo "Erro: " . $e->getMessage();
@@ -56,11 +58,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $comando->bindParam(':valor_hora', $_POST["valor_hora"]);
 
             if ($comando->execute()) {
-                echo $comando_verifica->rowCount() > 0 ? "Dados atualizados com sucesso!" : "Cadastro efetuado com sucesso!";
-                header("location: ../empresa/gerenciarfun.php");
-                exit;
+                $mensagemToastr = "success|Dados alterados com sucesso!";
             } else {
-                echo "Erro ao salvar os dados.";
+                $mensagemToastr = "error|Erro ao salvar os dados.";
             }
         } catch (PDOException $e) {
             echo "Erro: " . $e->getMessage();
@@ -71,6 +71,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 ?>
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+</head>
 
 <body>
     <div class="header">
@@ -78,16 +86,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <div class="container">
-        <div>
-            <img src="(foto do usuario).png" alt="Ícone de Funcionário">
-        </div>
 
         <?php
         $sql = "SELECT * FROM cadastro_fun WHERE id_funcionario = :id";
         $comando = $banco->prepare($sql);
         $comando->bindParam(":id", $id_funcionario);
         $comando->execute();
-        
+
         if ($registro = $comando->fetch()) {
             extract($registro, EXTR_PREFIX_ALL, "campo");
         } else {
@@ -96,19 +101,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<p>Funcionário não encontrado.</p>";
         }
         ?>
-        
-        
+
+
         <div class="form-container">
 
             <h2>Editar Funcionário</h2>
-            
+
             <form action="" method="POST">
                 <a href="frequenciafun.php?id=<?php echo $id_funcionario; ?>" class="frequencia-button">Gerenciar Frequência</a>
-                <input type="text" id="nome" name="nome" value="<?php echo $campo_nome; ?>" required>
+                <a href="ganhosfun.php?id=<?php echo $id_funcionario; ?>" class="frequencia-button">Ver ganhos</a>
+                <input type="text" id="nome" name="nome" value="<?php echo $campo_nome; ?>" readonly>
                 <input type="text" id="cpf" name="cpf" value="<?php echo $campo_cpf; ?>" readonly>
                 <input type="text" id="cargo" name="cargo" value="<?php echo $campo_cargo; ?>" required>
                 <div class="cep-valor-hora">
-                    <input type="text" id="cep" name="cep" value="<?php echo $campo_cep; ?>" required>
+                    <input type="text" id="cep" name="cep" value="<?php echo $campo_cep; ?>" readonly>
                     <input type="number" id="valor_hora" name="valor_hora" value="<?php echo $campo_valor_hora; ?>" required>
                 </div>
 
@@ -116,12 +122,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <button type="submit" name="remover" class="remover-button">Remover Funcionário</button>
             </form>
         </div>
-        
+
     </div>
 
     <?php
     include "../include/rodape.php";
     ?>
+
+    <script>
+        $(document).ready(function() {
+            <?php
+            if (!empty($mensagemToastr)) {
+                list($tipo, $mensagem) = explode('|', $mensagemToastr);
+                echo "toastr.$tipo('$mensagem');";
+            }
+            ?>
+        });
+    </script>       
 </body>
 
 </html>
