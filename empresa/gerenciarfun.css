@@ -3,6 +3,7 @@ body {
   background-color: #f6f6f6;
   margin: 0;
   padding: 0;
+  transform: translateY(-50px);
 }
 
 .header {
@@ -28,11 +29,11 @@ body {
   padding: 60px;
 }
 
+
 .card {
   border: 1px solid #ccc;
   border-radius: 10px;
   width: 20%;
-  /* Define a largura do cartão para 30% */
   padding: 20px;
   display: flex;
   align-items: center;

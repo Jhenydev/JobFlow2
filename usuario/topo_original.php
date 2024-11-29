@@ -27,7 +27,7 @@ if(isset($_GET["logout"])){
         <li><a href="login.php"><i class="fa fa-user"></i>  Entrar</a></li>
 
             <li><a href="index.php">Home</a></li>
-            <li><a href="quemsomos.php">Quem somos</a></li>
+           
             <li><a href="coberturas.php">Coberturas</a></li>
             <li><a href="contato.php">Contato</a></li>
         </ul>

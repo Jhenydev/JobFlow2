@@ -133,7 +133,7 @@
         [
           'title' => 'Descubra a praticidade<br>com o JobFlow', 
 "text" => "O JobFlow oferece uma solução completa para auxiliar pequenas empresas na gestão de seus colaboradores informais, proporcionando eficiência e organização.<br><br>Tanto empresas quanto funcionários têm acesso a ferramentas que permitem o gerenciamento detalhado de ganhos, frequência e outras informações essenciais.",
-'button_text' => 'Abrir uma conta JobFlow',
+
 'img_src' => '../img/cobertura1.jpg',
 'img_alt' => 'Imagem descritiva',
 'reverse' => false,
