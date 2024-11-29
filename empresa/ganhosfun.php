@@ -10,7 +10,7 @@ include '../include/headerfuncionario.php';
     <title>Informações de Cargo e Salário</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="ganhos.css"> 
+    <link rel="stylesheet" href="../funcionario/ganhos.css"> 
 </head>
 <body>
 <div class="container">
