@@ -2,7 +2,6 @@
 $css = "gerenciarfun.css";
 $navbar = "navbarempresa.php";
 include "../include/topo.php";
-
 ?>
 <?php
 include '../include/headerfuncionario.php';
@@ -31,12 +30,11 @@ include '../include/headerfuncionario.php';
                 </div>
             </div>
         ";
-        
         }
         ?>
     </div>
 
-
+           
 </body>
 
 </html>

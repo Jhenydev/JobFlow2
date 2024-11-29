@@ -88,9 +88,6 @@ if (isset($_POST['Gravar_Senha'])) {
       <div class="col-xs-12 col-sm-9">
         <form class="form-horizontal" action="profile.php" method="POST">
           <div class="panel panel-default">
-            <div class="panel-body text-center">
-              <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="img-circle profile-avatar" alt="User avatar">
-            </div>
           </div>
           <div class="panel panel-default">
             <div class="panel-heading">
