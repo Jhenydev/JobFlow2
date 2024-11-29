@@ -2,6 +2,7 @@
 $css = "gerenciarfun.css";
 $navbar = "navbarempresa.php";
 include "../include/topo.php";
+
 ?>
 
 <body>

@@ -19,7 +19,7 @@ if (session_id() == '' || !isset($_SESSION) || session_status() === PHP_SESSION_
 
 <body>
     <div class="header">
-        <img src="profile.jpg" alt="Foto de Perfil" class="profile-pic">
+       
         <div class="user-info">
             <h3>
               <a href="../funcionario/profile.php" class="config"><?php echo $_SESSION["usuario"]["nome"]; ?></a>  

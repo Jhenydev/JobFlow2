@@ -1,5 +1,5 @@
 <?php
-    include "../include/topo.php"; // Inclui o cabeçalho, caso necessário
+    include "../include/topo.php"; 
 ?>
 
 <!DOCTYPE html>
@@ -26,15 +26,12 @@
             padding: 60px 5%;
             border-radius: 20px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            background: linear-gradient(135deg, #fff, #f9f9ff);
+            background-color: #f6f6f6;
             margin: 20px auto;
             max-width: 1200px;
         }
 
-        .section:nth-child(even) {
-            background: linear-gradient(135deg, #eef1f7, #fff);
-        }
-
+        
         .text-content {
             flex: 1;
             min-width: 300px;
@@ -75,6 +72,11 @@
             background: linear-gradient(135deg, #b03c42, #ff4f5f);
             transform: translateY(-3px) scale(1.05);
             box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .espaco {
+            height: 160px;
+            background-color: #f6f6f6;
         }
 
         .image-content {
@@ -125,56 +127,76 @@
 </head>
 <body>
 
-    <div class="section">
-        <div class="text-content">
-            <h1>Descubra facilidades com o JobFlow</h1>
-            <p>O JobFlow oferece uma cobertura completa para ajudar pequenas empresas a gerenciar trabalhos informais.</p>
-            <a href="#" class="btn">Eu quero minha conta JobFlow</a>
-        </div>
-        <div class="image-content">
-            <img src="../img/cobertura1.jpg" alt="Imagem descritiva">
-        </div>
-    </div>
+    <?php 
+    // Estrutura de conteúdo para evitar repetição
+    $sections = [
+        [
+          'title' => 'Descubra a praticidade<br>com o JobFlow', 
+"text" => "O JobFlow oferece uma solução completa para auxiliar pequenas empresas na gestão de seus colaboradores informais, proporcionando eficiência e organização.<br><br>Tanto empresas quanto funcionários têm acesso a ferramentas que permitem o gerenciamento detalhado de ganhos, frequência e outras informações essenciais.",
+'button_text' => 'Abrir uma conta JobFlow',
+'img_src' => '../img/cobertura1.jpg',
+'img_alt' => 'Imagem descritiva',
+'reverse' => false,
 
-    <div class="section">
-        <div class="image-content">
-            <img src="../img/controleg.png" alt="Imagem descritiva">
-        </div>
-        <div class="text-content">
-            <h1>Controle Preciso de Horas Trabalhadas</h1>
-            <p>
-                Registre as horas de trabalho com exatidão, garantindo pagamentos corretos e eliminando erros.
-            </p>
-        </div>
-    </div>
 
-    <div class="section">
-        <div class="text-content">
-            <h1>Monitoramento Simplificado de Colaboradores</h1>
-            <p>
-                Acompanhe a frequência em tempo real, gerenciando sua equipe com mais eficiência.
-            </p>
-        </div>
-        <div class="image-content">
-            <img src="../img/cobertura4.png" alt="Imagem descritiva">
-        </div>
-    </div>
 
-    <div class="section">
-        <div class="image-content">
-            <img src="../img/ganhos.png" alt="Imagem descritiva">
-        </div>
-        <div class="text-content">
-            <h1>Transparência nos Ganhos dos Funcionários</h1>
-            <p>
-                Forneça relatórios claros sobre os ganhos, promovendo confiança e satisfação.
-            </p>
-        </div>
-    </div>   
-    
+        ],
+
+          [
+            'title' => 'Controle Preciso de Horas Trabalhadas',
+'text' => 'Simplifique o controle de jornada! Nossa plataforma permite que empresas e colaboradores visualizem um calendário completo com os registros de ponto e dias trabalhados, mês a mês. Com acompanhamento em tempo real, garantimos mais transparência, pagamentos justos e a eliminação de erros nos registros.',
+'img_src' => '../img/cobertura4.png',
+'img_alt' => 'Calendário com registros de ponto e jornada de trabalho',
+'reverse' => true,
+
+
+        ],
+        [
+            'title' => 'Registro de Ponto Fácil e Preciso',
+'text' => 'Permita que seus colaboradores registrem o ponto de forma rápida e precisa diretamente na plataforma. Essa funcionalidade exclusiva para funcionários garante que todas as horas sejam contabilizadas corretamente, evitando falhas e garantindo pagamentos justos.',
+'img_src' => '../img/controleg.png',
+'img_alt' => 'Imagem descritiva',
+'reverse' => true,
+
+
+        ],
+      
+        [
+           'title' => 'Visibilidade Completa dos Ganhos',
+'text' => 'Com base no registro de ponto, a plataforma permite que a empresa calcule os valores devidos com precisão, enquanto o funcionário acompanha seus ganhos previstos de forma clara e transparente, promovendo confiança e satisfação para ambas as partes.',
+'img_src' => '../img/ganhos.png',
+'img_alt' => 'Imagem descritiva',
+'reverse' => true,
+
+
+        ],
+    ];
+
+    foreach ($sections as $section) {
+        $order = $section['reverse'] ? 'reverse' : '';
+        echo "<div class='section $order'>";
+        if ($section['reverse']) {
+            echo "<div class='image-content'><img src='{$section['img_src']}' alt='{$section['img_alt']}'></div>";
+        }
+        echo "<div class='text-content'>
+                <h1>{$section['title']}</h1>
+                <p>{$section['text']}</p>";
+        if (!empty($section['button_text'])) {
+            echo "<a href='#' class='btn'>{$section['button_text']}</a>";
+        }
+        echo "</div>";
+        if (!$section['reverse']) {
+            echo "<div class='image-content'><img src='{$section['img_src']}' alt='{$section['img_alt']}'></div>";
+        }
+        echo "</div>";
+    }
+    ?>
+    <div class="espaco">
+
+    </div>
     <?php
-include "../include/rodape.php";
-?>
+        include "../include/rodape.php";
+    ?>
 
 </body>
 </html>
