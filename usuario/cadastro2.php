@@ -2,6 +2,9 @@
 include "../include/topo.php";
 include "../include/conexao.php";
 
+$mensagemToastr = "";
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         $tipo_usuario = $_POST["tipo"];
@@ -29,13 +32,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $comando->bindParam(':senha', $_POST["senha"]);
 
         if ($comando->execute()) {
-            echo "Cadastro efetuado com sucesso!";
+            $mensagemToastr = "success|Cadastro efetuado com sucesso!";
         } else {
-            echo "Erro ao cadastrar usuário.";
+            $mensagemToastr = "error|Erro ao efetuar Cadastro!";
         }
     } catch (PDOException $e) {
-        echo "Erro: " . $e->getMessage();
+        $mensagemToastr = "error|Erro:" . $e->getMessage();
     }
+}else{
+    $mensagemToastr = "error|AAAAAAAAAAAAAAAAAAAAAAAAAAAAa";
 }
 ?>
 
@@ -44,6 +49,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <title>Cadastro</title>
     <link rel="stylesheet" href="cadastro2.css">
@@ -93,6 +101,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 alert("Por favor, digite um CEP válido com 8 dígitos.");
             }
         }
+
+        $(document).ready(function () {
+            <?php
+            if (!empty($mensagemToastr)) {
+                list($tipo, $mensagem) = explode('|', $mensagemToastr);
+                echo "toastr.$tipo('$mensagem');";
+            }
+            ?>
+        });
     </script>
 </head>
 
@@ -148,7 +165,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="confirme_senha">Confirme a Senha</label>
         <input type="password" name="confirme_senha" id="confirme_senha" placeholder="Confirme sua senha" required>
 
-        <input type="submit" value="Continuar">
+        <button type="submit" value="Continuar">Adicionar</button>
     </form>
 </body>
 </html>

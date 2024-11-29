@@ -22,9 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $comando_remover->bindParam(':cpf', $_POST["cpf"]);
 
             if ($comando_remover->execute()) {
-
+                header("location: ../empresa/gerenciarfun.php");
                 $mensagemToastr = "success|Funcionario removido com sucesso!";
-                exit;
             } else {
                  $mensagemToastr = "error|Erro ao remover funcionário.";
             }

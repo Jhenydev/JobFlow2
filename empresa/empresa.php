@@ -11,9 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_single'])) {
     try {
 
         $id = $_POST['id_justificativa'];
-
-
-
         $sql = "UPDATE   justificar SET situacao = 'Recusado'
                 WHERE id = :id";
 
@@ -86,11 +83,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['aceitar'])) {
             $comando = $banco->prepare($sql);
             $comando->bindParam(':id', $id);
             $comando->execute();
-
-            echo "<p>Notificação concluída e removida com sucesso!</p>";
+            $mensagemToastr = "success|Notificação concluída e removida com sucesso!";
         }
     } catch (PDOException $e) {
-        echo "<p>Erro ao remover notificação: " . $e->getMessage() . "</p>";
+        $mensagemToastr = "error|Erro ao remover notificação!";
     }
 }
 ?>
