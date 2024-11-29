@@ -109,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <form action="" method="POST">
                 <a href="frequenciafun.php?id=<?php echo $id_funcionario; ?>" class="frequencia-button">Gerenciar Frequência</a>
-                <a href="ganhosfun.php?id=<?php echo $id_funcionario; ?>" class="frequencia-button">Ver ganhos</a>
+                <a href="ganhosfun.php?id=<?php echo $id_funcionario; ?>&nome=<?php echo $campo_nome; ?>" class="frequencia-button">Ver ganhos</a>
                 <input type="text" id="nome" name="nome" value="<?php echo $campo_nome; ?>" readonly>
                 <input type="text" id="cpf" name="cpf" value="<?php echo $campo_cpf; ?>" readonly>
                 <input type="text" id="cargo" name="cargo" value="<?php echo $campo_cargo; ?>" required>

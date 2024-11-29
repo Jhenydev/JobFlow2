@@ -15,10 +15,12 @@ include '../include/headerfuncionario.php';
 <body>
 <div class="container">
     <div class="titulo">
-        <h3>Salário Previsto <?php echo $_SESSION['cadastro_fun']['nome'] ?></h3>
+        <h3>Salário Previsto <?php echo $_REQUEST['nome'] ?></h3>
     </div>
 
     <form>
+        <input type="hidden" name="id" value="<?php echo $_REQUEST['id'] ?>">
+        <input type="hidden" name="nome" value="<?php echo $_REQUEST['nome'] ?>">
         <div class="filter">
             
 
@@ -33,11 +35,14 @@ include '../include/headerfuncionario.php';
     </form>
 
     <?php
-    // Verifica se os filtros foram enviados pelo formulário
-    if (isset($_REQUEST['empresa']) && isset($_REQUEST['dias'])) {
-        $empresa = $_REQUEST['empresa'];
-        $cpf = $_SESSION["usuario"]["cpf"];
+        $empresa = $_SESSION['usuario']['id_usuario'];
+        
+        
+        // Verifica se os filtros foram enviados pelo formulário
+    if (isset($_REQUEST['id']) && isset($_REQUEST['dias'])) {
+        $id = $_REQUEST['id'];
         $dias = $_REQUEST['dias'];
+
 
         $sql = "SELECT cargo, valor_hora, 
                        SUM(TIMESTAMPDIFF(MINUTE, hora_entrada, hora_saida)) minutos_prestados,
@@ -47,12 +52,12 @@ include '../include/headerfuncionario.php';
                 INNER JOIN marca_ponto USING (empresa, id_usuario)
                 WHERE hora_saida IS NOT NULL  
                 AND empresa = :empresa
-                AND cpf = :cpf
+                AND id_usuario = :id
                 AND DATA >= DATE_SUB(CURDATE(), INTERVAL :dias DAY)
                 GROUP BY cargo, valor_hora";
         $comando = $banco->prepare($sql);
         $comando->bindParam(':empresa', $empresa);
-        $comando->bindParam(':cpf', $cpf);
+        $comando->bindParam(':id', $id);
         $comando->bindParam(':dias', $dias);
         $comando->execute();
 
