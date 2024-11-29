@@ -11,14 +11,18 @@ form {
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  width: 800px;
+  width: 80%; 
+  max-width: 2400px; 
+  min-width: 500px; 
   text-align: center;
   position: relative;
+  padding: 30px; 
+  box-sizing: border-box;
 }
 
 h1 {
-  font-size: 24px;
-  margin-top: 40px;
+  font-size: 32px; 
+  margin-top: 20px;
   margin-bottom: 60px;
   color: #333;
 }
@@ -32,10 +36,9 @@ label {
 
 input[type="text"],
 input[type="password"] {
-  width: 70%;
-
-  padding: 10px;
-  margin-bottom: 15px;
+  width: 80%; /* Aumentei a largura dos campos de entrada */
+  padding: 15px; /* Aumentei o padding para mais conforto */
+  margin-bottom: 20px; /* Aumentei o espaçamento entre os campos */
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
@@ -44,12 +47,12 @@ input[type="password"] {
 input[type="submit"] {
   background-color: #333;
   color: #fff;
-  padding: 12px;
-  width: 60%;
+  padding: 15px;
+  width: 70%; /* Aumentei a largura do botão */
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px; /* Aumentei o tamanho da fonte */
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -61,7 +64,7 @@ input[type="submit"]:hover {
 a {
   color: #000;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 16px; /* Aumentei o tamanho da fonte dos links */
 }
 
 a:hover {
@@ -72,7 +75,7 @@ a:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px; /* Aumentei o espaçamento inferior */
 }
 
 input[type="checkbox"] {
@@ -80,23 +83,24 @@ input[type="checkbox"] {
 }
 
 .options label {
-  font-size: 14px;
+  font-size: 16px; /* Aumentei o tamanho da fonte das labels */
   color: #555;
 }
 
 .options a {
-  font-size: 14px;
+  font-size: 16px;
   margin-left: 42%;
   color: gray;
 }
+
 .criarconta a {
-  width: 200px;
-  height: 30px;
+  width: 220px;
+  height: 40px; /* Aumentei a altura do botão */
   background-color: white;
   color: black;
   border: none;
-  padding: 10px 10px;
-  font-size: 16px;
+  padding: 12px;
+  font-size: 18px; /* Aumentei o tamanho da fonte */
   cursor: pointer;
   border: 1px solid black;
   border-radius: 5px;
@@ -106,4 +110,53 @@ input[type="checkbox"] {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+
+@media (max-width: 1024px) {
+  form {
+    width: 90px; 
+    padding: 20px;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    width: 85%; /* Aumentei um pouco a largura */
+    padding: 12px;
+  }
+
+  input[type="submit"] {
+    width: 80%; /* Aumentei o botão um pouco */
+  }
+
+  .options {
+    flex-direction: column;
+  }
+}
+
+/* Para dispositivos móveis (celulares) */
+@media (max-width: 768px) {
+  form {
+    width: 95%; /* Formulário ocupa 95% da tela */
+    padding: 15px;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    width: 100%; /* Campos ocupam 100% */
+    padding: 12px;
+  }
+
+  input[type="submit"] {
+    width: 100%; /* Botão ocupa 100% */
+  }
+
+  h1 {
+    font-size: 26px; /* Tamanho da fonte reduzido em telas pequenas */
+  }
+
+  .options {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

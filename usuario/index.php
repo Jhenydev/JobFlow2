@@ -23,29 +23,10 @@
         </div>
     </section>
 
-    <section class="steps">
-        <h2> Controle total para empresas, acesso exclusivo para <br> funcionários. Tudo em uma plataforma!</h2>
-        <div class="step">
-            <img src="time.png" alt="Ícone de cartão">
-            <h3>Marca ponto digital</h3>
-            <p>Marque seu ponto pelo seu dispositivo sem dificuldades.</p>
-        </div>
 
-        <div class="step">
-            <img src="calendar.png"><br>
-            <h3>Controle de Frequência</h3>
-            <p>Tenha acesso a toda sua frequência no trabalho.</p>
-        </div>
-
-        <div class="step">
-            <img src="dinheiro.png" alt="Ícone de responsável">
-            <h3>Controle de ganhos</h3>
-            <p>Veja seu ganho mensal de acordo com as horas trabalhadas.</p>
-        </div>
-        
-    </section>
-
-
+    <?php
+        include "../usuario/cobertura.php";
+    ?>
 
 
     <?php
