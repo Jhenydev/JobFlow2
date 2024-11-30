@@ -39,8 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } catch (PDOException $e) {
         $mensagemToastr = "error|Erro:" . $e->getMessage();
     }
-}else{
-    $mensagemToastr = "error|AAAAAAAAAAAAAAAAAAAAAAAAAAAAa";
 }
 ?>
 
