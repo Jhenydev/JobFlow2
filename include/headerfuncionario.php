@@ -19,8 +19,12 @@ if (session_id() == '' || !isset($_SESSION) || session_status() === PHP_SESSION_
 
 <body>
     <div class="header">
-       
+    <button class="voltar" onclick="history.back()" style="background: none; border: none; cursor: pointer; display: flex; align-items: center;">
+    <img src="../img/volte.png" alt="volte" width="40" height="40" style="margin-right: 10px;">
+    
+</button>
         <div class="user-info">
+            
             <h3>
               <a href="../funcionario/profile.php" class="config"><?php echo $_SESSION["usuario"]["nome"]; ?></a>  
             </h3>
