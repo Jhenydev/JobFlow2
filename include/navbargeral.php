@@ -6,7 +6,7 @@
                     $logo = "../img/white.png";
             ?>
                 <li><a href="../usuario/index.php?logout"><i class="fa fa-sign-out-alt"></i> Sair</a></li>
-                <li><a href="principal.php"></i>Perfil</a></li>
+                <li> <a href="javascript:void(0)" onclick="goBack()"> <i class="fa fa-user"></i> Perfil </a> </li>
             <?php
                 } else {
                 $logo = "../img/logojob.png";
@@ -32,5 +32,20 @@
         <a href="index.php" class="logo" style="margin-right: 100px;">
             <img src="<?php echo $logo; ?>" alt="Logo JobFlow">
         </a>
+
+        <script>
+  function goBack() {
+  
+    const previousPage = document.referrer;
+
+    
+    if (previousPage && !previousPage.includes("login.php")) {
+      history.back(); 
+    } else {
+      location.href = location.href; 
+    }
+  }
+</script>
+
     </div>
 </nav>

@@ -155,9 +155,13 @@ include "../include/conexao.php";
                         echo "<input type='hidden' name='id_justificativa' value='{$registro["id"]}'>";
                         echo "<strong>Funcionario:</strong> {$registro['nome']}<br>";
                         echo "<strong>Data:</strong> {$registro['data']}<br>";
+                        echo "<br>";
                         echo "<strong>Justificativa:</strong> {$registro['justificativa']}<br>";
+                        echo "<br>";
                         echo "<strong>Entrada:</strong> <input type='time' name='hora_entrada' value='{$registro['entrada']}' id='hora_entrada'/><br>";
+                        echo "<br>";
                         echo "<strong>Saída:</strong> <input type='time' name='hora_saida' value='{$registro['saida']}' id='hora_saida'/>";
+                        echo "<br><br>";
                         echo "<button class='salvar' name='aceitar' type='submit'>Salvar Alterações</button>";
                         echo "</form>";
 
