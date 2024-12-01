@@ -13,7 +13,7 @@ include "../include/conexao.php";
     <link rel="stylesheet" href="indexfuncionario.css"> 
 </head>
 <body>
-    <p>Bem-vindo(a) <b><?php echo $_SESSION["usuario"]["nome"]; ?></b> ao sistema.</p>
+    <br><p style="text-align: center;">Bem-vindo(a) <b><?php echo $_SESSION["usuario"]["nome"]; ?></b> ao sistema.</p><br>
     <?php
     $sql = "SELECT  empresa, usuarios.nome, cadastro_fun.cargo
 FROM cadastro_fun INNER JOIN usuarios ON (empresa = id_usuario) 

@@ -41,10 +41,15 @@ if (isset($_POST["usuarios"])) {
             <div class="options">
                 <a href="esquecisenha.php">Esqueceu sua senha?</a>
             </div>
+            <?php echo $mensagem;
+                    echo "<br>";
+                    echo "<br>";
+            ?>
             <input type="submit" value="ENTRAR">
             <br><br><br>
             <div class="criarconta">
                 <a href="cadastro2.php">Criar Conta</a>
+                
             </div>
     </div>
     </form>

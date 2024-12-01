@@ -111,7 +111,7 @@ include "../include/conexao.php";
 ?>
 <body>
 
-    <p>Bem-vindo(a) <b><?php echo $_SESSION["usuario"]["nome"]; ?></b> ao sistema.</p>
+        <br><p style="text-align: center;">Bem-vindo(a) <b><?php echo $_SESSION["usuario"]["nome"]; ?></b> ao sistema.</p><br>
     <div class="container">
         <div class="menu">
             <a href="cadastrarfun.php">
