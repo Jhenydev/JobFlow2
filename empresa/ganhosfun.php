@@ -95,6 +95,7 @@ include '../include/headerfuncionario.php';
         </tbody>
     </table>
 </div>
+<?php include "../include/rodape.php"; ?>
 <div class="espaco">
 </div>
 </body>

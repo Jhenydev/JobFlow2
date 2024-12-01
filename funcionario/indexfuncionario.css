@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f6f6f6;
+  
 }
 .config{
   color: white;
@@ -16,6 +17,7 @@ body {
   font-size: 40px;
   cursor: pointer;
 }
+
 
 .logo {
   font-size: 24px;
@@ -46,7 +48,7 @@ body {
 .container {
   display: flex;
   justify-content: center; 
-  padding: 60px;
+  /* padding: 60px; */
 }
 
 .menu {

@@ -30,6 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['aceitar'])) {
         $id = $_POST['id_justificativa'];
         $hora_entrada = $_POST['hora_entrada'];
         $hora_saida = $_POST['hora_saida'];
+        error_log($hora_entrada);
+        error_log($hora_saida);
 
         $sql = "SELECT * FROM justificar WHERE id = :id";
         $comando = $banco->prepare($sql);
@@ -55,6 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['aceitar'])) {
                 AND data = :data";
     
                 $comando = $banco->prepare($sql);
+                $comando->bindParam(':hora_entrada', $hora_entrada);
+                $comando->bindParam(':hora_saida', $hora_saida);
                 $comando->bindParam(':id_usuario', $registro_justificar["id_usuario"]);
                 $comando->bindParam(':empresa', $registro_justificar["empresa"]);
                 $comando->bindParam(':data', $registro_justificar["data"]);
@@ -102,11 +106,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['aceitar'])) {
     <link rel="stylesheet" href="notificacoes.css">
 </head>
 <?php
-include '../include/headerfuncionario.php';
+include "../include/topo.php";
+include "../include/conexao.php";
 ?>
 <body>
 
-
+    <p>Bem-vindo(a) <b><?php echo $_SESSION["usuario"]["nome"]; ?></b> ao sistema.</p>
     <div class="container">
         <div class="menu">
             <a href="cadastrarfun.php">
@@ -115,6 +120,8 @@ include '../include/headerfuncionario.php';
             <a href="gerenciarfun.php">
                 <button>GERENCIAR FUNCIONÁRIO</button>
             </a>
+
+            <br><br><br>
         </div>
     </div>
 
@@ -198,8 +205,8 @@ include '../include/headerfuncionario.php';
 
 
     </div>
-
-
+<div class="espaco"></div>
+    <?php include "../include/rodape.php"; ?>
 </body>
 
 </html>

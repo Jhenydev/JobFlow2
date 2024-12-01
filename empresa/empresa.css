@@ -20,6 +20,10 @@ body {
   margin: 0 auto; /* Garante que o contêiner tenha uma margem automática nas laterais */
 }
 
+.espaco {
+  height: 200px;
+}
+
 .salvar {
   background-color: #f69223; 
   color: white; 
@@ -89,7 +93,6 @@ body {
 .container {
   display: flex;
   justify-content: center; 
-  padding: 60px;
 }
 
 .menu {

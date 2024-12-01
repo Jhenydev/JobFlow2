@@ -36,3 +36,5 @@
 include "../include/rodape.php";
 ?>
 
+</body>
+</html>

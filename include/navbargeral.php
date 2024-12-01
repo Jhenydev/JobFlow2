@@ -3,13 +3,13 @@
         <ul class="nav-links">
             <?php
                 if (isset($_SESSION["usuario"])) {
-                    $logo = "white.png";
+                    $logo = "../img/white.png";
             ?>
-                <li><a href="index.php?logout"><i class="fa fa-sign-out-alt"></i> Sair</a></li>
+                <li><a href="../usuario/index.php?logout"><i class="fa fa-sign-out-alt"></i> Sair</a></li>
                 <li><a href="principal.php"></i>Perfil</a></li>
             <?php
                 } else {
-                $logo = "logojob.png";
+                $logo = "../img/logojob.png";
                 ?>
                     <li><a href="login.php"><i class="fa fa-user"></i>Entrar</a></li>
                 <?php
@@ -17,7 +17,7 @@
             ?>
             <?php
                 if (!isset($_SESSION["usuario"])) {
-                    $logo = "logojob.png";
+                    $logo = "../img/logojob.png";
             ?>
                 <li><a href="../usuario/index.php">Home</a></li>
             <?php

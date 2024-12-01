@@ -135,6 +135,6 @@ if (!$id_funcionario) {
         renderCalendar(currentDate.getFullYear(), currentDate.getMonth());
     });
 </script>
-
+<?php include "../include/rodape.php"; ?>
 </body>
 </html>

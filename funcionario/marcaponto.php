@@ -107,7 +107,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <br><br>
-    <a href="indexfuncionario.php" class="botao">Voltar</a>
     <div class="boxes" style="display: flex; gap: 20px; justify-content: center; margin-top: 20px;">
         <div class="buttons-container">
             <form id="pontoForm" method="POST">

@@ -110,5 +110,6 @@ include '../include/headerfuncionario.php';
 </div>
 <div class="espaco">
 </div>
+<?php include "../include/rodape.php"; ?>
 </body>
 </html>

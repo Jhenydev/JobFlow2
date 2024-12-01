@@ -31,7 +31,7 @@ if (session_id() == '' || !isset($_SESSION) || session_status() === PHP_SESSION_
             </h3>
             <?php echo $_SESSION["usuario"]["cpf"]; ?>
         </div>
-        <img src="../usuario/logowhite.png" alt="Logo" width="130" height="30" style="margin-right: 20px;">
+        <img src="../img/logowhite.png" alt="Logo" width="130" height="30" style="margin-right: 20px;">
     </div>
 
 </body>

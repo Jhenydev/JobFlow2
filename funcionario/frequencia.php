@@ -138,6 +138,6 @@ include_once '../include/conexao.php';
         renderCalendar(currentDate.getFullYear(), currentDate.getMonth());
     });
 </script>
-
+<?php include "../include/rodape.php"; ?>
 </body>
 </html>

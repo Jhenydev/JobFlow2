@@ -137,6 +137,7 @@ include '../include/headerfuncionario.php';
             ?>
         });
     </script>    
+    <?php include "../include/rodape.php"; ?>
     <div class="espaco"></div>   
 </body>
 

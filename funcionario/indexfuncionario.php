@@ -1,6 +1,7 @@
 <?php
 $area_restrita = 1;
-include '../include/headerfuncionario.php';
+include "../include/topo.php";
+include "../include/conexao.php";
 ?>
 
 <!DOCTYPE html>
@@ -12,8 +13,8 @@ include '../include/headerfuncionario.php';
     <link rel="stylesheet" href="indexfuncionario.css"> 
 </head>
 <body>
+    <p>Bem-vindo(a) <b><?php echo $_SESSION["usuario"]["nome"]; ?></b> ao sistema.</p>
     <?php
-    include_once '../include/conexao.php'; 
     $sql = "SELECT  empresa, usuarios.nome, cadastro_fun.cargo
 FROM cadastro_fun INNER JOIN usuarios ON (empresa = id_usuario) 
 WHERE cadastro_fun.cpf = ?";
@@ -51,7 +52,7 @@ echo "
 
     <div class="container">
         <div class="menu">
-
+        <br><br><br>
         <a href="marcaponto.php">
                 <button>MARCAR PONTO</button> </a>
 
@@ -61,11 +62,11 @@ echo "
             <a href="ganhos.php">
                 <button>GANHOS</button> </a>
 
-            
+                
            
         </div>
     </div>
-
+    <?php include "../include/rodape.php"; ?>
 </body>
 
 </html>

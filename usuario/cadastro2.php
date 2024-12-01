@@ -165,5 +165,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <button type="submit" value="Continuar">Adicionar</button>
     </form>
+    <br><br>
+    <?php include "../include/rodape.php"; ?>
 </body>
 </html>
