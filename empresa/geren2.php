@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("location: ../empresa/gerenciarfun.php");
                 $mensagemToastr = "success|Funcionario removido com sucesso!";
             } else {
-                 $mensagemToastr = "error|Erro ao remover funcionário.";
+                $mensagemToastr = "error|Erro ao remover funcionário.";
             }
         } catch (PDOException $e) {
             echo "Erro: " . $e->getMessage();
@@ -81,6 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php
 include '../include/headerfuncionario.php';
 ?>
+
 <body>
 
     <div class="container">
@@ -106,7 +107,7 @@ include '../include/headerfuncionario.php';
             <h2>Editar Funcionário</h2>
 
             <form action="" method="POST">
-                <a href="frequenciafun.php?id=<?php echo $id_funcionario; ?>" class="frequencia-button">Gerenciar Frequência</a>
+                <a href="frequenciafun.php?id=<?php echo $id_funcionario; ?>&nome=<?php echo $campo_nome; ?>&cargo=<?php echo $campo_cargo; ?>" class="frequencia-button">Gerenciar Frequência</a>
                 <a href="ganhosfun.php?id=<?php echo $id_funcionario; ?>&nome=<?php echo $campo_nome; ?>" class="frequencia-button">Ver ganhos</a>
                 <input type="text" id="nome" name="nome" value="<?php echo $campo_nome; ?>" readonly>
                 <input type="text" id="cpf" name="cpf" value="<?php echo $campo_cpf; ?>" readonly>
@@ -129,6 +130,13 @@ include '../include/headerfuncionario.php';
 
     <script>
         $(document).ready(function() {
+            toastr.options = {
+                "positionClass": "toast-top-center", // Centraliza no topo da tela
+                "closeButton": true, // Adiciona botão de fechar
+                "progressBar": true, // Exibe barra de progresso
+                "timeOut": "5000", // Tempo de exibição em milissegundos
+            };
+
             <?php
             if (!empty($mensagemToastr)) {
                 list($tipo, $mensagem) = explode('|', $mensagemToastr);

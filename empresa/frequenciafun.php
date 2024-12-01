@@ -41,6 +41,10 @@ if (!$id_funcionario) {
         $comando->execute(array($_REQUEST["id"]));
     ?>
         <h3>Visualização de Dados</h3>
+        <h4>Funcionario(a): <?php echo $_REQUEST['nome']?></h4>
+
+        <input type="hidden" name="id" value="<?php echo $_REQUEST['id'] ?>">
+        <input type="hidden" name="nome" value="<?php echo $_REQUEST['nome'] ?>">
         <div id="data-content">Selecione uma data para ver os dados.</div>
     </div>
     

@@ -126,7 +126,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" name="cpf" id="cpf" placeholder="Digite seu CPF" required>
 
         <div id="employeeFields" style="display: none;">
-            <label for="sexo">Sexo</lab el>
+            <label for="sexo">Sexo</label>
             <select name="sexo" id="sexo">
                 <option value="Feminino">Feminino</option>
                 <option value="Masculino">Masculino</option>
@@ -163,7 +163,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="confirme_senha">Confirme a Senha</label>
         <input type="password" name="confirme_senha" id="confirme_senha" placeholder="Confirme sua senha" required>
 
-        <button type="submit" value="Continuar">Adicionar</button>
+        <button type="submit" value="Continuar">Cadastrar</button>
     </form>
     <br><br>
     <?php include "../include/rodape.php"; ?>

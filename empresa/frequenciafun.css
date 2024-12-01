@@ -86,6 +86,11 @@
   color: #c94c51;
   text-align: center;
 }
+.data-preview h4 {
+  margin-top: 0;
+  color: #c94c51;
+  text-align: center;
+}
 
 .data-preview p {
   font-size: 16px;
