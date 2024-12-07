@@ -35,7 +35,7 @@ html {
 .app-button {
   position: absolute;
   top: 60%;
-  left: 21%; /* Centraliza horizontalmente */
+  left: 22%; /* Centraliza horizontalmente */
   transform: translate(-50%, -50%);
   background-color: white;
   color: black;

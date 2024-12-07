@@ -205,7 +205,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="justificativa">Justificativa</label>
                     <textarea name="justificativa" id="justificativa" placeholder="Escreva sua justificativa aqui" rows="4" required></textarea>
 
-                    <button type="submit" name="tipo" value="JUSTIFICAR">Justificar</button> header("Location: marcaponto.php");
+                    <button type="submit" name="tipo" value="JUSTIFICAR">Justificar</button>
                 </form>
             </div>
         </div>

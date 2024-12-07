@@ -18,7 +18,7 @@
 
     <section class="hero">
         <div class="hero-image">
-            <img src="fotoindex.png" alt="Imagem">
+            <img src="../img/finish.png" alt="Imagem">
             <a href="cadastro2.php" class="app-button">Cadastrar</a>
         </div>
     </section>

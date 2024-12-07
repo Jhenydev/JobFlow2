@@ -35,6 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($comando->execute()) {
                 $mensagemToastr = "success|Cadastro efetuado com sucesso!";
+                header("location:../empresa/empresa.php");
             } else {
                 $mensagemToastr = "error|Erro ao cadastrar usuário.";
             }
